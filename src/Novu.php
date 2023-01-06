@@ -17,6 +17,7 @@ class Novu
         Actions\ManagesFeeds,
         Actions\ManagesIntegrations,
         Actions\ManagesMessages,
+        Actions\ManagesTriggers,
         Actions\ManagesNotificationGroups,
         Actions\ManagesNotificationTemplates;
 
