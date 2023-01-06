@@ -3,10 +3,13 @@
 namespace Novu\SDK;
 
 use GuzzleHttp\Client as HttpClient;
+use Novu\SDK\Exceptions\IsNull;
+use Novu\SDK\Exceptions\IsEmpty;
 
 class Novu
 {
-    use MakeHttpRequests;
+    use MakeHttpRequests,
+        Actions\ManagesSubscribers;
 
     /**
      * The Nova API Key.
@@ -27,7 +30,7 @@ class Novu
      *
      * @var \GuzzleHttp\Client
      */
-    public $guzzle;
+    public $client;
 
     /**
      * Number of seconds a request is retried.
@@ -43,14 +46,22 @@ class Novu
      * @param  \GuzzleHttp\Client|null  $guzzle
      * @return void
      */
-    public function __construct($apiKey = null, HttpClient $guzzle = null)
+    public function __construct($apiKey = null, HttpClient $client = null)
     {
-        if (! is_null($apiKey)) {
-            $this->setApiKey($apiKey, $guzzle);
+        if ( is_null($apiKey)) {
+            throw IsNull::make('API KEY');
         }
 
-        if (! is_null($guzzle)) {
-            $this->guzzle = $guzzle;
+        if( empty($apiKey)) {
+            throw isEmpty::make('API KEY');
+        }
+
+        if (! is_null($apiKey)) {
+            $this->setApiKey($apiKey, $client);
+        }
+
+        if (! is_null($client)) {
+            $this->client = $client;
         }
     }
 
