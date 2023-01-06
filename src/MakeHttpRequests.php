@@ -10,7 +10,7 @@ use Novu\SDK\Exceptions\Timeout;
 use Novu\SDK\Exceptions\ValidationFailed;
 use Psr\Http\Message\ResponseInterface;
 
-trait MakesHttpRequests
+trait MakeHttpRequests
 {
     /**
      * Make a GET request to Novu servers and return the response.

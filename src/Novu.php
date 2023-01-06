@@ -1,12 +1,12 @@
 <?php
 
-namespace Nova\SDK;
+namespace Novu\SDK;
 
 use GuzzleHttp\Client as HttpClient;
 
 class Nova
 {
-    use MakesHttpRequests;
+    use MakeHttpRequests;
 
     /**
      * The Nova API Key.
