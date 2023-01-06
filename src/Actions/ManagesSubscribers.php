@@ -60,6 +60,18 @@ trait ManagesSubscribers
     }
 
     /**
+     * Fetch list of subscribers
+     *
+     * @return \Nova\SDK\Resources\Subscriber
+     */
+    public function getSubscriberList()
+    {
+        $subscribers = $this->get("subscribers");
+
+        return new Subscriber($subscribers, $this);
+    }
+
+    /**
      * Fetch a subscriber preferences
      *
      * @param  string  $subscriberId

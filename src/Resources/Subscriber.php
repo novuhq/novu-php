@@ -99,4 +99,13 @@ class Subscriber extends Resource
     {
         $this->novu->deleteSubscriber($this->subscriberId);
     }
+
+    public function toArray(): array
+    {
+        $publicProperties = get_object_vars($this);
+        unset($publicProperties['attributes']);
+        unset($publicProperties['novu']);
+
+        return $publicProperties;
+    }
 }

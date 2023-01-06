@@ -75,7 +75,7 @@ trait MakeHttpRequests
             $payload = empty($payload) ? [] : ['form_params' => $payload];
         }
 
-        $response = $this->guzzle->request($verb, $uri, $payload);
+        $response = $this->client->request($verb, $uri, $payload);
 
         $statusCode = $response->getStatusCode();
 

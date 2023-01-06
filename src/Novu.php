@@ -84,18 +84,18 @@ class Novu
      * Set the api key and setup the guzzle request object.
      *
      * @param  string  $apiKey
-     * @param  \GuzzleHttp\Client|null  $guzzle
+     * @param  \GuzzleHttp\Client|null  $client
      * @return $this
      */
-    public function setApiKey($apiKey, $guzzle = null)
+    public function setApiKey($apiKey, $client = null)
     {
         $this->apiKey = $apiKey;
 
-        $this->guzzle = $guzzle ?: new HttpClient([
+        $this->client = $client ?: new HttpClient([
             'base_uri' => $this->baseUri,
             'http_errors' => false,
             'headers' => [
-                'Authorization' => 'Bearer '.$this->apiKey,
+                'Authorization' => 'ApiKey '.$this->apiKey,
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
             ],
