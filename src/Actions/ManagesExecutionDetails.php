@@ -22,7 +22,7 @@ trait ManagesExecutionDetails
             $uri .= '?' . http_build_query($queryParams);
         }
 
-        $response = $this->get($uri)['data'];
+        $response = $this->get($uri);
 
         return new ExecutionDetail($response, $this);
     }
