@@ -1,16 +1,18 @@
 {
-    "name": "nunomaduro/skeleton-php",
-    "description": "A skeleton repository for my packages",
-    "keywords": ["php", "skeleton", "package"],
+    "name": "unicodeveloper/novu",
+    "description": "The Novu PHP SDK",
+    "keywords": ["php", "novu", "notifications", "infrastructure"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Nuno Maduro",
-            "email": "enunomaduro@gmail.com"
+            "name": "Prosper Otemuyiwa",
+            "email": "prosperotemuyiwa@gmail.com"
         }
     ],
     "require": {
-        "php": "^8.0"
+        "php": "^7.2|^8.0",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^6.3.1|^7.0"
     },
     "require-dev": {
         "pestphp/pest": "^1.20.0",
@@ -20,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "NunoMaduro\\SkeletonPhp\\": "src/"
+            "Nova\\SDK\\": "src/"
         }
     },
     "autoload-dev": {
