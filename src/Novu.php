@@ -9,7 +9,16 @@ use Novu\SDK\Exceptions\IsEmpty;
 class Novu
 {
     use MakeHttpRequests,
-        Actions\ManagesSubscribers;
+        Actions\ManagesSubscribers,
+        Actions\ManagesActivity,
+        Actions\ManagesChanges,
+        Actions\ManagesEnvironments,
+        Actions\ManagesExecutionDetails,
+        Actions\ManagesFeeds,
+        Actions\ManagesIntegrations,
+        Actions\ManagesMessages,
+        Actions\ManagesNotificationGroups,
+        Actions\ManagesNotificationTemplates;
 
     /**
      * The Nova API Key.
