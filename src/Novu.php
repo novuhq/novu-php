@@ -66,7 +66,7 @@ class Novu
     }
 
     /**
-     * Set the api key and setup the guzzle request object.
+     * Set the api key and setup the client request object.
      *
      * @param  string  $apiKey
      * @param  \GuzzleHttp\Client|null  $client
