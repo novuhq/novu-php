@@ -4,7 +4,7 @@ namespace Novu\SDK;
 
 use GuzzleHttp\Client as HttpClient;
 
-class Nova
+class Novu
 {
     use MakeHttpRequests;
 
