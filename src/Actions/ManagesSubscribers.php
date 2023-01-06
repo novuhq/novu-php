@@ -11,7 +11,7 @@ trait ManagesSubscribers
      *
      * @param  array $data
      * @param  bool  $wait
-     * @return \Nova\SDK\Resources\Subscriber
+     * @return \Novu\SDK\Resources\Subscriber
      */
     public function createSubscriber(array $data, $wait = true)
     {
@@ -25,7 +25,7 @@ trait ManagesSubscribers
      *
      * @param  string $subscriberId
      * @param  array  $data
-     * @return \Nova\SDK\Resources\Subscriber
+     * @return \Novu\SDK\Resources\Subscriber
      */
     public function updateSubscriber($subscriberId, array $data)
     {
@@ -38,7 +38,7 @@ trait ManagesSubscribers
      * Delete the given subscriber.
      *
      * @param  string  $subscriberId
-     * @return \Nova\SDK\Resources\Subscriber
+     * @return \Novu\SDK\Resources\Subscriber
      */
     public function deleteSubscriber($subscriberId)
     {
@@ -52,7 +52,7 @@ trait ManagesSubscribers
      *
      * @param  string $subscriberId
      * @param  array  $data
-     * @return \Nova\SDK\Resources\Subscriber
+     * @return \Novu\SDK\Resources\Subscriber
      */
     public function updateSubscriberCredentials($subscriberId, array $data)
     {
@@ -64,7 +64,7 @@ trait ManagesSubscribers
     /**
      * Fetch list of subscribers [ Come back to this for pagination---->]
      *
-     * @return \Nova\SDK\Resources\Subscriber
+     * @return \Novu\SDK\Resources\Subscriber
      */
     public function getSubscriberList()
     {
@@ -77,7 +77,7 @@ trait ManagesSubscribers
      * Fetch one subscriber
      *
      * @param  string $subscriberId
-     * @return \Nova\SDK\Resources\Subscriber
+     * @return \Novu\SDK\Resources\Subscriber
      */
     public function getSubscriber($subscriberId)
     {
@@ -90,7 +90,7 @@ trait ManagesSubscribers
      * Fetch a subscriber preferences
      *
      * @param  string  $subscriberId
-     * @return \Nova\SDK\Resources\Subscriber
+     * @return \Novu\SDK\Resources\Subscriber
      */
     public function getSubscriberPreferences($subscriberId)
     {
@@ -105,7 +105,7 @@ trait ManagesSubscribers
      * @param  string $subscriberId
      * @param  string $templateId
      * @param  array  $data
-     * @return \Nova\SDK\Resources\Subscriber
+     * @return \Novu\SDK\Resources\Subscriber
      */
     public function updateSubscriberPreference($subscriberId, $templateId, array $data)
     {
@@ -118,7 +118,7 @@ trait ManagesSubscribers
      * Get a notification feed for a particular subscriber [Come back to this for pagination]
      *
      * @param  string  $subscriberId
-     * @return \Nova\SDK\Resources\Subscriber
+     * @return \Novu\SDK\Resources\Subscriber
      */
     public function getNotificationFeedForSubscriber($subscriberId)
     {
@@ -131,7 +131,7 @@ trait ManagesSubscribers
      * Get the unseen notification count for subscribers feed
      *
      * @param  string  $subscriberId
-     * @return \Nova\SDK\Resources\Subscriber
+     * @return \Novu\SDK\Resources\Subscriber
      */
     public function getUnseenNotificationCountForSubscriber($subscriberId)
     {
@@ -147,7 +147,7 @@ trait ManagesSubscribers
      * @param  string  $messageId
      * @param  array $data
      * @param  bool  $wait
-     * @return \Nova\SDK\Resources\Subscriber
+     * @return \Novu\SDK\Resources\Subscriber
      */
     public function markSubscriberFeedMessageAsSeen($subscriberId, $messageId, array $data, $wait = true)
     {
@@ -164,7 +164,7 @@ trait ManagesSubscribers
      * @param  string  $type
      * @param  array   $data
      * @param  bool    $wait
-     * @return \Nova\SDK\Resources\Subscriber
+     * @return \Novu\SDK\Resources\Subscriber
      */
     public function markSubscriberMessageActionAsSeen($subscriberId, $messageId, $type, array $data, $wait = true)
     {
