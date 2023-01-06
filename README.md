@@ -1,12 +1,22 @@
-<p align="center">
-    <p align="center">
-        <a href="https://github.com/unicodeveloper/laravel-paystack/actions"><img alt="GitHub Workflow Status (master)" src="https://img.shields.io/github/workflow/status/unicodeveloper/laravel-paystack//Tests/master"></a>
-        <a href="https://packagist.org/packages/unicodeveloper/laravel-paystack/"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/unicodeveloper/laravel-paystack/"></a>
-        <a href="https://packagist.org/packages/unicodeveloper/laravel-paystack/"><img alt="Latest Version" src="https://img.shields.io/packagist/v/unicodeveloper/laravel-paystack/"></a>
-        <a href="https://packagist.org/packages/unicodeveloper/laravel-paystack/"><img alt="License" src="https://img.shields.io/packagist/unicodeveloper/laravel-paystack"></a>
-    </p>
-</p>
+# PHP NOVU SDK
 
+[![Latest Stable Version](https://poser.pugx.org/unicodeveloper/laravel-paystack/v/stable.svg)](https://packagist.org/packages/unicodeveloper/laravel-paystack)
+[![License](https://poser.pugx.org/unicodeveloper/laravel-paystack/license.svg)](LICENSE.md)
+[![Build Status](https://img.shields.io/travis/unicodeveloper/laravel-paystack.svg)](https://travis-ci.org/unicodeveloper/laravel-paystack)
+[![Quality Score](https://img.shields.io/scrutinizer/g/unicodeveloper/laravel-paystack.svg?style=flat-square)](https://scrutinizer-ci.com/g/unicodeveloper/laravel-paystack)
+[![Total Downloads](https://img.shields.io/packagist/dt/unicodeveloper/laravel-paystack.svg?style=flat-square)](https://packagist.org/packages/unicodeveloper/laravel-paystack)
+
+
+## Introduction
+
+The [PHP Novu](https://novu.co) SDK provides an expressive interface for interacting with Novu's API and managing notifications.
+
+## Installation
+
+[PHP](https://php.net) 7.2+ and [Composer](https://getcomposer.org) are required.
+
+
+### Note: Currently under development, please don't use in production
 ------
 
 
