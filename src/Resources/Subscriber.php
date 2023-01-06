@@ -100,12 +100,20 @@ class Subscriber extends Resource
         $this->novu->deleteSubscriber($this->subscriberId);
     }
 
+    /**
+     * Return the array form of Subscriber object & strip out all null fields.
+     *
+     * @return array
+     */
     public function toArray(): array
     {
         $publicProperties = get_object_vars($this);
+
         unset($publicProperties['attributes']);
         unset($publicProperties['novu']);
 
-        return $publicProperties;
+        return array_filter($publicProperties, function ($value) { 
+            return null !== $value;
+        });
     }
 }

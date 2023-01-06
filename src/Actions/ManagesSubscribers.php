@@ -15,7 +15,7 @@ trait ManagesSubscribers
      */
     public function createSubscriber(array $data, $wait = true)
     {
-        $subscriber = $this->post("subscribers", $data);
+        $subscriber = $this->post("subscribers", $data)['data'];
 
         return new Subscriber($subscriber, $this);
     }
@@ -29,7 +29,7 @@ trait ManagesSubscribers
      */
     public function updateSubscriber($subscriberId, array $data)
     {
-        $subscriber = $this->put("subscribers/{$subscriberId}", $data);
+        $subscriber = $this->put("subscribers/{$subscriberId}", $data)['data'];
 
         return new Subscriber($subscriber, $this);
     }
@@ -38,11 +38,13 @@ trait ManagesSubscribers
      * Delete the given subscriber.
      *
      * @param  string  $subscriberId
-     * @return void
+     * @return \Nova\SDK\Resources\Subscriber
      */
     public function deleteSubscriber($subscriberId)
     {
-        $this->delete("subscribers/{$subscriberId}");
+        $response = $this->delete("subscribers/{$subscriberId}")['data'];
+
+        return new Subscriber($response, $this);
     }
 
     /**
@@ -54,13 +56,13 @@ trait ManagesSubscribers
      */
     public function updateSubscriberCredentials($subscriberId, array $data)
     {
-        $subscriber = $this->put("subscribers/{$subscriberId}/credentials", $data);
+        $subscriber = $this->put("subscribers/{$subscriberId}/credentials", $data)['data'];
 
         return new Subscriber($subscriber, $this);
     }
 
     /**
-     * Fetch list of subscribers
+     * Fetch list of subscribers [ Come back to this for pagination---->]
      *
      * @return \Nova\SDK\Resources\Subscriber
      */
@@ -72,6 +74,19 @@ trait ManagesSubscribers
     }
 
     /**
+     * Fetch one subscriber
+     *
+     * @param  string $subscriberId
+     * @return \Nova\SDK\Resources\Subscriber
+     */
+    public function getSubscriber($subscriberId)
+    {
+        $subscriber = $this->get("subscribers/{$subscriberId}")['data'];
+
+        return new Subscriber($subscriber, $this);
+    }
+
+    /**
      * Fetch a subscriber preferences
      *
      * @param  string  $subscriberId
@@ -79,7 +94,7 @@ trait ManagesSubscribers
      */
     public function getSubscriberPreferences($subscriberId)
     {
-        $preferences = $this->get("subscribers/{$subscriberId}/preferences");
+        $preferences = $this->get("subscribers/{$subscriberId}/preferences")['data'];
 
         return new Subscriber($preferences, $this);
     }
@@ -94,7 +109,7 @@ trait ManagesSubscribers
      */
     public function updateSubscriberPreference($subscriberId, $templateId, array $data)
     {
-        $subscriber = $this->patch("subscribers/{$subscriberId}/preferences/{$templateId}", $data);
+        $subscriber = $this->patch("subscribers/{$subscriberId}/preferences/{$templateId}", $data)['data'];
 
         return new Subscriber($subscriber, $this);
     }
@@ -120,7 +135,7 @@ trait ManagesSubscribers
      */
     public function getUnseenNotificationCountForSubscriber($subscriberId)
     {
-        $feed = $this->get("subscribers/{$subscriberId}/notifications/unseen")['count'];
+        $feed = $this->get("subscribers/{$subscriberId}/notifications/unseen")['data'];
 
         return new Subscriber($feed, $this);
     }
@@ -136,7 +151,7 @@ trait ManagesSubscribers
      */
     public function markSubscriberFeedMessageAsSeen($subscriberId, $messageId, array $data, $wait = true)
     {
-        $subscriber = $this->post("subscribers/{$subscriberId}/messages/{$messageId}/seen", $data);
+        $subscriber = $this->post("subscribers/{$subscriberId}/messages/{$messageId}/seen", $data)['data'];
 
         return new Subscriber($subscriber, $this);
     }
@@ -153,7 +168,7 @@ trait ManagesSubscribers
      */
     public function markSubscriberMessageActionAsSeen($subscriberId, $messageId, $type, array $data, $wait = true)
     {
-        $subscriber = $this->post("subscribers/{$subscriberId}/messages/{$messageId}/actions/{$type}", $data);
+        $subscriber = $this->post("subscribers/{$subscriberId}/messages/{$messageId}/actions/{$type}", $data)['data'];
 
         return new Subscriber($subscriber, $this);
     }

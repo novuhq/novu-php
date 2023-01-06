@@ -48,6 +48,18 @@ trait MakeHttpRequests
     }
 
     /**
+     * Make a PATCH request to Novu servers and return the response.
+     *
+     * @param  string  $uri
+     * @param  array  $payload
+     * @return mixed
+     */
+    public function patch($uri, array $payload = [])
+    {
+        return $this->request('PATCH', $uri, $payload);
+    }
+
+    /**
      * Make a DELETE request to Novu servers and return the response.
      *
      * @param  string  $uri
