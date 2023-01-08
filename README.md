@@ -29,7 +29,7 @@ $novu = new Novu(<INSERT_API_KEY_HERE>);
 
 Now, you can use the `Novu` instance to perform all the actions that Novu's API provides. 
 
-### EVENTS
+## EVENTS
 
 **Trigger** an event - send notification to subscribers:
 
