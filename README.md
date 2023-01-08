@@ -21,7 +21,7 @@ composer require unicodeveloper/novu
 
 First, create an instance of the SDK like so:
 
-```bash
+```php
 use Novu\SDK\Novu;
 
 $novu = new Novu(<INSERT_API_KEY_HERE>);
