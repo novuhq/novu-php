@@ -122,5 +122,22 @@ $novu->markSubscriberMessageActionAsSeen($subscriberId, $messageId, $type, []);
 
 ```
 
+## ACTIVITY
+
+```php
+
+// Get activity feed
+$feed = $novu->getActivityFeed();
+
+// Get activity statistics
+$stats = $novu->getActivityStatistics()->toArray();
+
+// Get activity graph statistics
+$graphStats = $novu->getActivityGraphStatistics()->toArray();
+
+```
+
+
+
 
 **Novu SDK** was created by **[Prosper Otemuyiwa](https://twitter.com/unicodeveloper)** under the **[MIT license](https://opensource.org/licenses/MIT)**.
