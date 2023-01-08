@@ -61,7 +61,66 @@ $response = $novu->broadcastEvent([
 $response = $novu->cancelEvent($transactionId)->toArray();
 ```
 
+### SUBSCRIBERS
 
+```php
+
+// Get list of subscribers
+$subscribers  = $novu->getSubscriberList();
+
+// Create subscriber & get the details of the recently created subscriber returned.
+$subscriber = $novu->createSubscriber([
+    'subscriberId' => 'YOUR_SYSTEM_USER_ID>',
+    'email' => '<insert-email>', // optional
+    'firstName' => '<insert-firstname>', // optional
+    'lastName' => '<insert-lastname>', // optional
+    'phone' => '<insert-phone>', //optional
+    'avatar' => '<insert-avatar>', // optional
+])->toArray();
+
+// Get subscriber
+$subscriber = $novu->getSubscriber($subscriberId)->toArray();
+
+// Update subscriber
+$subscriber = $novu->updateSubscriber($subscriberId, [
+    'email' => '<insert-email>', // optional
+    'firstName' => '<insert-firstname>', // optional
+    'lastName' => '<insert-lastname>', // optional
+    'phone' => '<insert-phone>', //optional
+    'avatar' => '<insert-avatar>', // optional
+])->toArray();
+
+// Delete subscriber
+$novu->deleteSubscriber($subscriberId);
+
+// Update subscriber credentials
+$response => $novu->updateSubscriberCredentials($subscriberId, [
+    'providerId'  => '<insert-providerId>',
+    'credentials' => '<insert-credentials>'
+])->toArray();
+
+// Get subscriber preferences
+$preferences = $novu->getSubscriberPreferences($subscriberId)->toArray();
+
+// Update subscriber preference
+$novu->updateSubscriberPreference($subscriberId, $templateId, [
+    'channel' => 'insert-channel',
+    'enabled' => 'insert-boolean-value' // optional
+]);
+
+// Get a notification feed for a particular subscriber
+$feed = $novu->getNotificationFeedForSubscriber($subscriberId);
+
+// Get the unseen notification count for subscribers feed
+$count = $novu->getUnseenNotificationCountForSubscriber($subscriberId);
+
+// Mark a subscriber feed message as seen
+$novu->markSubscriberFeedMessageAsSeen($subscriberId, $messageId, []);
+
+// Mark message action as seen
+$novu->markSubscriberMessageActionAsSeen($subscriberId, $messageId, $type, []);
+
+```
 
 
 **Novu SDK** was created by **[Prosper Otemuyiwa](https://twitter.com/unicodeveloper)** under the **[MIT license](https://opensource.org/licenses/MIT)**.
