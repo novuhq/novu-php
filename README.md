@@ -19,7 +19,7 @@ composer require unicodeveloper/novu
 
 ## Usage
 
-First, create an instance of the SDK like so:
+First, create an instance of the **Novu SDK** like so:
 
 ```php
 use Novu\SDK\Novu;
@@ -61,7 +61,7 @@ $response = $novu->broadcastEvent([
 $response = $novu->cancelEvent($transactionId)->toArray();
 ```
 
-### SUBSCRIBERS
+## SUBSCRIBERS
 
 ```php
 
