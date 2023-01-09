@@ -44,6 +44,8 @@ First, create an instance of the **Novu SDK** like so:
 use Novu\SDK\Novu;
 
 $novu = new Novu(<INSERT_API_KEY_HERE>);
+
+// Sign up on https://web.novu.co and grab your API key from https://web.novu.co/settings
 ```
 
 Now, you can use the `Novu` instance to perform all the actions that Novu's API provides. 
