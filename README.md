@@ -2,7 +2,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/unicodeveloper/novu/v/stable.svg)](https://packagist.org/packages/unicodeveloper/novu)
 [![License](https://poser.pugx.org/unicodeveloper/novu/license.svg)](LICENSE.md)
-[![Total Downloads](https://img.shields.io/packagist/dt/unicodeveloper/novu.svg?style=flat-square)](https://packagist.org/packages/unicodeveloper/novu)
+[![Total Downloads](https://img.shields.io/packagist/dt/unicodeveloper/novu.svg)](https://packagist.org/packages/unicodeveloper/novu)
 
 > The [PHP Novu](https://novu.co) SDK and package provides a fluent and expressive interface for interacting with Novu's API and managing notifications.
 
