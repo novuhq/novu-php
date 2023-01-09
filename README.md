@@ -234,6 +234,64 @@ $novu->createNotificationGroup([
 $novu->getNotificationGroups()->toArray();
 
 ```
+## CHANGES
+
+```php
+
+// Get changes
+$novu->getChanges();
+
+// Get changes count
+$novu->getChangesCount()->toArray();
+
+// Apply changes
+$novu->applyBulkChanges([
+    'changeIds' = [
+        '<insert-all-the-change-ids>'
+    ]
+])->toArray();
+
+// Apply change
+$novu->applyChange($changeId, []);
+
+```
+
+## ENVIRONMENTS
+
+```php
+
+// Get current environment
+$novu->getCurrentEnvironment()->toArray();
+
+// Create environment
+$novu->createEnvironment([
+    'name' => '<insert-name>',
+    'parentId' => '<insert-parent-id>' // optional
+])->toArray();
+
+// Get environments
+$novu->getEnvironments()->toArray();
+
+// Update environment by id
+$novu->updateEnvironment($envId, [
+  "name" => "name",
+  "identifier" => "identifier",
+  "parentId" => "parentId"
+]);
+
+// Get API KEYS
+$novu->getEnvironmentsAPIKeys()->toArray();
+
+// Regenerate API KEYS
+$key = $novu->regenerateEnvironmentsAPIKeys()->toArray();
+
+// Update Widget Settings
+$novu->updateWidgetSettings([
+    'notificationCenterEncryption' => true
+]);
+
+```
+
 
 
 
