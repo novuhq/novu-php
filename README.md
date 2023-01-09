@@ -12,10 +12,28 @@
 
 [PHP](https://php.net) 7.2+ and [Composer](https://getcomposer.org) are required.
 
+To get the latest version of Novu PHP SDK, simply require it:
 
 ```bash
 composer require unicodeveloper/novu
 ```
+
+## Contents
+
+* [Usage](#usage)
+    * [Events](#events)
+    * [Subscribers](#subscribers)
+    * [Activity](#activity)
+    * [Integrations](#integrations)
+    * [Notification Templates](#notification-templates)
+    * [Notification Groups](#notification-groups)
+    * [Changes](#changes)
+    * [Environments](#environments)
+    * [Feeds](#feeds)
+    * [Messages](#messages)
+    * [Execution Details](#execution-details)
+* [Installation](#installation)
+* [License](#license)
 
 ## Usage
 
@@ -333,5 +351,6 @@ $novu->getExecutionDetails([
 
 ```
 
+## License
 
 **Novu SDK** was created by **[Prosper Otemuyiwa](https://twitter.com/unicodeveloper)** under the **[MIT license](https://opensource.org/licenses/MIT)**.
