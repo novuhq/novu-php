@@ -175,6 +175,68 @@ $novu->deleteIntegration($integrationId);
 
 ```
 
+## NOTIFICATION TEMPLATES
+
+```php
+
+// Get notification templates
+$novu->getNotificationTemplates()->toArray();
+
+// Create notification template
+$novu->createNotificationTemplate([
+  "name" => "name",
+  "notificationGroupId" => "notificationGroupId",
+  "tags" => ["tags"],
+  "description" => "description",
+  "steps" => ["steps"],
+  "active" => true,
+  "draft" => true,
+  "critical" => true,
+  "preferenceSettings" => preferenceSettings
+])->toArray();
+
+// Update notification template
+$novu->updateNotificationTemplate($templateId, [
+  "name" => "name",
+  "tags" => ["tags"],
+  "description" => "description",
+  "identifier" => "identifier",
+  "steps" => ["steps"],
+  "notificationGroupId" => "notificationGroupId",
+  "active" => true,
+  "critical" => true,
+  "preferenceSettings" => preferenceSettings
+])->toArray();
+
+// Delete notification template
+$novu->deleteNotificationTemplate($templateId);
+
+// Get notification template
+$novu->getANotificationTemplate($templateId);
+
+// Update notification template status
+$novu->updateNotificationTemplateStatus($templateId, [
+    'active' => true
+])
+
+```
+
+## NOTIFICATION GROUPS
+
+```php
+
+// Create Notification group
+$novu->createNotificationGroup([
+    'name' => '<insert-name>'
+]);
+
+// Get Notification groups
+$novu->getNotificationGroups()->toArray();
+
+```
+
+
+
 
 
 **Novu SDK** was created by **[Prosper Otemuyiwa](https://twitter.com/unicodeveloper)** under the **[MIT license](https://opensource.org/licenses/MIT)**.
