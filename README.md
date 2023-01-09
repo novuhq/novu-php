@@ -137,6 +137,43 @@ $graphStats = $novu->getActivityGraphStatistics()->toArray();
 
 ```
 
+## INTEGRATIONS
+
+```php
+
+// Get integrations
+$novu->getIntegrations()->toArray();
+
+// Create integration
+$novu->createIntegration([
+    'providerId' => '<insert->provider->id>',
+    'channel' => '<insert->channel>',
+    'credentials' => [
+        // insert all the fields
+    ],
+    'active' => true,
+    'check' => true
+])->toArray();
+
+// Get active integrations
+$novu->getActiveIntegrations()->toArray();
+
+// Get webhook support status for provider
+$novu->getWebhookSupportStatusForProvider($providerId)->toArray();
+
+// Update integration
+$novu->updateIntegration($integrationId, [
+    'active' => true,
+    'credentials' => [
+        // insert all the fields
+    ],
+    'check' => true
+])->toArray();
+
+// Delete integration
+$novu->deleteIntegration($integrationId);
+
+```
 
 
 
