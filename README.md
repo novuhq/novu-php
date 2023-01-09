@@ -292,9 +292,46 @@ $novu->updateWidgetSettings([
 
 ```
 
+## FEEDS
 
+```php
 
+// Create feed
+$novu->createFeed([
+    'name' => '<insert-name-for-feed>'
+]);
 
+// Get feeds
+$novu->getFeeds()->toArray();
+
+// Delete feed
+$novu->deleteFeed();
+
+```
+
+## MESSAGES
+
+```php
+
+// Get messages
+$novu->getMessages();
+
+// Delete message
+$novu->deleteMessage();
+
+```
+
+## EXECUTION DETAILS
+
+```php
+
+// Get execution details
+$novu->getExecutionDetails([
+    'notificationId' => '<insert-notification-id>',
+    'subscriberId'   => '<insert-subscriber-id>'
+])->toArray();
+
+```
 
 
 **Novu SDK** was created by **[Prosper Otemuyiwa](https://twitter.com/unicodeveloper)** under the **[MIT license](https://opensource.org/licenses/MIT)**.
