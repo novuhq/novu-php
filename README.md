@@ -18,6 +18,7 @@ composer require unicodeveloper/novu
 
 ## Contents
 
+* [Installation](#installation)
 * [Usage](#usage)
     * [Novu API Reference](https://docs.novu.co/api/overview/)
     * [Events](#events)
@@ -31,7 +32,6 @@ composer require unicodeveloper/novu
     * [Feeds](#feeds)
     * [Messages](#messages)
     * [Execution Details](#execution-details)
-* [Installation](#installation)
 * [License](#license)
 
 ## Usage
