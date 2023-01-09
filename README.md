@@ -21,6 +21,7 @@ composer require unicodeveloper/novu
 ## Contents
 
 * [Usage](#usage)
+    * [Novu API Reference](https://docs.novu.co/api/overview/)
     * [Events](#events)
     * [Subscribers](#subscribers)
     * [Activity](#activity)
@@ -353,4 +354,4 @@ $novu->getExecutionDetails([
 
 ## License
 
-**Novu SDK** was created by **[Prosper Otemuyiwa](https://twitter.com/unicodeveloper)** under the **[MIT license](https://opensource.org/licenses/MIT)**.
+**Novu PHP SDK** was created by **[Prosper Otemuyiwa](https://twitter.com/unicodeveloper)** under the **[MIT license](https://opensource.org/licenses/MIT)**.
