@@ -1,10 +1,8 @@
 # PHP NOVU SDK
 
-[![Latest Stable Version](https://poser.pugx.org/unicodeveloper/laravel-paystack/v/stable.svg)](https://packagist.org/packages/unicodeveloper/laravel-paystack)
-[![License](https://poser.pugx.org/unicodeveloper/laravel-paystack/license.svg)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/unicodeveloper/laravel-paystack.svg)](https://travis-ci.org/unicodeveloper/laravel-paystack)
-[![Quality Score](https://img.shields.io/scrutinizer/g/unicodeveloper/laravel-paystack.svg?style=flat-square)](https://scrutinizer-ci.com/g/unicodeveloper/laravel-paystack)
-[![Total Downloads](https://img.shields.io/packagist/dt/unicodeveloper/laravel-paystack.svg?style=flat-square)](https://packagist.org/packages/unicodeveloper/laravel-paystack)
+[![Latest Stable Version](https://poser.pugx.org/unicodeveloper/novu/v/stable.svg)](https://packagist.org/packages/unicodeveloper/novu)
+[![License](https://poser.pugx.org/unicodeveloper/novu/license.svg)](LICENSE.md)
+[![Total Downloads](https://img.shields.io/packagist/dt/unicodeveloper/novu.svg)](https://packagist.org/packages/unicodeveloper/novu)
 
 > The [PHP Novu](https://novu.co) SDK and package provides a fluent and expressive interface for interacting with Novu's API and managing notifications.
 
@@ -20,6 +18,7 @@ composer require unicodeveloper/novu
 
 ## Contents
 
+* [Installation](#installation)
 * [Usage](#usage)
     * [Novu API Reference](https://docs.novu.co/api/overview/)
     * [Events](#events)
@@ -33,7 +32,6 @@ composer require unicodeveloper/novu
     * [Feeds](#feeds)
     * [Messages](#messages)
     * [Execution Details](#execution-details)
-* [Installation](#installation)
 * [License](#license)
 
 ## Usage
