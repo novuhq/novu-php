@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Nova\\SDK\\": "src/"
+            "Novu\\SDK\\": "src/"
         }
     },
     "autoload-dev": {
