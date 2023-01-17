@@ -145,7 +145,7 @@ trait MakeHttpRequests
      * @param  int  $sleep
      * @return mixed
      *
-     * @throws \Nova\SDK\Exceptions\Timeout
+     * @throws \Novu\SDK\Exceptions\Timeout
      */
     public function retry($timeout, $callback, $sleep = 5)
     {
