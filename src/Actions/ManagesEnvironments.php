@@ -10,7 +10,7 @@ trait ManagesEnvironments
     /**
      * Get current environment
      *
-     * @return \Nova\SDK\Resources\Environment
+     * @return \Novu\SDK\Resources\Environment
      */
     public function getCurrentEnvironment()
     {
@@ -22,7 +22,7 @@ trait ManagesEnvironments
     /**
      * Get All environments
      *
-     * @return \Nova\SDK\Resources\Environment
+     * @return \Novu\SDK\Resources\Environment
      */
     public function getEnvironments()
     {
@@ -34,7 +34,7 @@ trait ManagesEnvironments
     /**
      * Get API keys
      *
-     * @return \Nova\SDK\Resources\Environment
+     * @return \Novu\SDK\Resources\Environment
      */
     public function getEnvironmentsAPIKeys()
     {
@@ -47,7 +47,7 @@ trait ManagesEnvironments
      * Regenerate API keys
      *
      * @param array $data
-     * @return \Nova\SDK\Resources\Environment
+     * @return \Novu\SDK\Resources\Environment
      */
     public function regenerateEnvironmentsAPIKeys(array $data = [])
     {
@@ -60,7 +60,7 @@ trait ManagesEnvironments
      * Create environment
      *
      * @param array $data
-     * @return \Nova\SDK\Resources\Environment
+     * @return \Novu\SDK\Resources\Environment
      */
     public function createEnvironment(array $data)
     {
@@ -73,7 +73,7 @@ trait ManagesEnvironments
      * Update environment by id
      *
      * @param string $environmentId
-     * @return \Nova\SDK\Resources\Environment
+     * @return \Novu\SDK\Resources\Environment
      */
     public function updateEnvironment($environmentId, array $data)
     {
@@ -86,7 +86,7 @@ trait ManagesEnvironments
      * Update widget settings
      *
      * @param array  $data
-     * @return \Nova\SDK\Resources\Environment
+     * @return \Novu\SDK\Resources\Environment
      */
     public function updateWidgetSettings(array $data)
     {

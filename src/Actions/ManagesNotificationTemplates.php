@@ -10,7 +10,7 @@ trait ManagesNotificationTemplates
     /**
      * Get Notification Templates
      *
-     * @return \Nova\SDK\Resources\NotificationTemplate
+     * @return \Novu\SDK\Resources\NotificationTemplate
      */
     public function getNotificationTemplates()
     {
@@ -22,7 +22,7 @@ trait ManagesNotificationTemplates
     /**
      * Create notification template
      *
-     * @return \Nova\SDK\Resources\NotificationTemplate
+     * @return \Novu\SDK\Resources\NotificationTemplate
      */
     public function createNotificationTemplate(array $data)
     {
@@ -35,7 +35,7 @@ trait ManagesNotificationTemplates
      * Get One Notification Template
      *
      * @param string $templateId
-     * @return \Nova\SDK\Resources\NotificationTemplate
+     * @return \Novu\SDK\Resources\NotificationTemplate
      */
     public function getANotificationTemplate($templateId)
     {
@@ -49,7 +49,7 @@ trait ManagesNotificationTemplates
      *
      * @param string $templateId
      * @param array  $data
-     * @return \Nova\SDK\Resources\NotificationTemplate
+     * @return \Novu\SDK\Resources\NotificationTemplate
      */
     public function updateNotificationTemplateStatus($templateId, array $data)
     {
@@ -61,7 +61,7 @@ trait ManagesNotificationTemplates
     /**
      * Delete Notification Template
      *
-     * @return \Nova\SDK\Resources\NotificationTemplate
+     * @return \Novu\SDK\Resources\NotificationTemplate
      */
     public function deleteNotificationTemplate($templateId)
     {

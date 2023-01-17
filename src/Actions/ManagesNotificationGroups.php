@@ -10,7 +10,7 @@ trait ManagesNotificationGroups
     /**
      * Get Notification Groups
      *
-     * @return \Nova\SDK\Resources\NotificationGroup
+     * @return \Novu\SDK\Resources\NotificationGroup
      */
     public function getNotificationGroups()
     {
@@ -22,7 +22,7 @@ trait ManagesNotificationGroups
     /**
      * Create notification group
      *
-     * @return \Nova\SDK\Resources\NotificationGroup
+     * @return \Novu\SDK\Resources\NotificationGroup
      */
     public function createNotificationGroup(array $data)
     {

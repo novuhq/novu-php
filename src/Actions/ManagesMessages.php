@@ -10,7 +10,7 @@ trait ManagesMessages
     /**
      * Get Messages [Come back here because of pagination]
      *
-     * @return \Nova\SDK\Resources\Message
+     * @return \Novu\SDK\Resources\Message
      */
     public function getMessages()
     {
@@ -23,7 +23,7 @@ trait ManagesMessages
      * Delete Message
      *
      * @param string $messageId
-     * @return \Nova\SDK\Resources\Message
+     * @return \Novu\SDK\Resources\Message
      */
     public function deleteMessage($messageId)
     {

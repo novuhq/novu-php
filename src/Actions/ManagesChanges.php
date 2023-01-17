@@ -10,7 +10,7 @@ trait ManagesChanges
     /**
      * Get Changes
      *
-     * @return \Nova\SDK\Resources\Change
+     * @return \Novu\SDK\Resources\Change
      */
     public function getChanges()
     {
@@ -22,7 +22,7 @@ trait ManagesChanges
     /**
      * Get Changes Count
      *
-     * @return \Nova\SDK\Resources\Change
+     * @return \Novu\SDK\Resources\Change
      */
     public function getChangesCount()
     {
@@ -34,7 +34,7 @@ trait ManagesChanges
     /**
      * Apply Bulk Changes
      *
-     * @return \Nova\SDK\Resources\Change
+     * @return \Novu\SDK\Resources\Change
      */
     public function applyBulkChanges(array $data)
     {
@@ -47,7 +47,7 @@ trait ManagesChanges
      * Apply Change
      *
      * @param string $changeId
-     * @return \Nova\SDK\Resources\Change
+     * @return \Novu\SDK\Resources\Change
      */
     public function applyChange($changeId, array $data)
     {

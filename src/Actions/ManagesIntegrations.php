@@ -10,7 +10,7 @@ trait ManagesIntegrations
     /**
      * Get Integrations
      *
-     * @return \Nova\SDK\Resources\Integration
+     * @return \Novu\SDK\Resources\Integration
      */
     public function getIntegrations()
     {
@@ -22,7 +22,7 @@ trait ManagesIntegrations
     /**
      * Create integration
      *
-     * @return \Nova\SDK\Resources\Integration
+     * @return \Novu\SDK\Resources\Integration
      */
     public function createIntegration(array $data)
     {
@@ -34,7 +34,7 @@ trait ManagesIntegrations
     /**
      * Get Active Integrations
      *
-     * @return \Nova\SDK\Resources\Integration
+     * @return \Novu\SDK\Resources\Integration
      */
     public function getActiveIntegrations()
     {
@@ -46,7 +46,7 @@ trait ManagesIntegrations
     /**
      * Update Integration
      *
-     * @return \Nova\SDK\Resources\Integration
+     * @return \Novu\SDK\Resources\Integration
      */
     public function updateIntegration($integrationId, array $data)
     {
@@ -58,7 +58,7 @@ trait ManagesIntegrations
     /**
      * Delete Integration
      *
-     * @return \Nova\SDK\Resources\Integration
+     * @return \Novu\SDK\Resources\Integration
      */
     public function deleteIntegration($integrationId)
     {
@@ -70,7 +70,7 @@ trait ManagesIntegrations
     /**
      * Get webhook support status for provider
      * @param string $providerId
-     * @return \Nova\SDK\Resources\Integration
+     * @return \Novu\SDK\Resources\Integration
      */
     public function getWebhookSupportStatusForProvider($providerId)
     {
