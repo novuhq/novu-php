@@ -22,14 +22,14 @@ class Novu
         Actions\ManagesNotificationTemplates;
 
     /**
-     * The Nova API Key.
+     * The Novu API Key.
      *
      * @var string
      */
     protected $apiKey;
 
      /**
-     * The Nova API Base URL.
+     * The Novu API Base URL.
      *
      * @var string
      */
