@@ -15,5 +15,6 @@ final class IsNull extends Exception
     public static function make(string $value)
     {
         return new self("The {$value} is null. Please provide it.");
+        
     }
 }
