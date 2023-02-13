@@ -10,7 +10,7 @@ trait ManagesFeeds
     /**
      * Get Feeds
      *
-     * @return \Nova\SDK\Resources\Feed
+     * @return \Novu\SDK\Resources\Feed
      */
     public function getFeeds()
     {
@@ -23,7 +23,7 @@ trait ManagesFeeds
      * Create Feed
      *
      * @param array $data
-     * @return \Nova\SDK\Resources\Feed
+     * @return \Novu\SDK\Resources\Feed
      */
     public function createFeed(array $data)
     {
@@ -36,7 +36,7 @@ trait ManagesFeeds
      * Delete Feed
      *
      * @param string $feedId
-     * @return \Nova\SDK\Resources\Feed
+     * @return \Novu\SDK\Resources\Feed
      */
     public function deleteFeed($feedId)
     {

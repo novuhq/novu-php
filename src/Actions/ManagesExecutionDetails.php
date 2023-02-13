@@ -11,7 +11,7 @@ trait ManagesExecutionDetails
      * Get Execution Details
      * 
      * @param $queryParams array
-     * @return \Nova\SDK\Resources\ExecutionDetail
+     * @return \Novu\SDK\Resources\ExecutionDetail
      */
     public function getExecutionDetails(array $queryParams = [])
     {

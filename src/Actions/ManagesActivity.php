@@ -10,7 +10,7 @@ trait ManagesActivity
     /**
      * Get Activity Feed [ Come back to this for pagination and query parameters---->]
      *
-     * @return \Nova\SDK\Resources\Activity
+     * @return \Novu\SDK\Resources\Activity
      */
     public function getActivityFeed()
     {
@@ -22,7 +22,7 @@ trait ManagesActivity
     /**
      * Get Activity Statistics
      *
-     * @return \Nova\SDK\Resources\Activity
+     * @return \Novu\SDK\Resources\Activity
      */
     public function getActivityStatistics()
     {
@@ -34,7 +34,7 @@ trait ManagesActivity
     /**
      * Get activity graph statistics
      *
-     * @return \Nova\SDK\Resources\Activity
+     * @return \Novu\SDK\Resources\Activity
      */
     public function getActivityGraphStatistics()
     {

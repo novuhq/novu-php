@@ -11,7 +11,7 @@ trait ManagesTriggers
      * Trigger event
      *
      * @param array $data
-     * @return \Nova\SDK\Resources\Trigger
+     * @return \Novu\SDK\Resources\Trigger
      */
     public function triggerEvent(array $data)
     {
@@ -24,7 +24,7 @@ trait ManagesTriggers
      * Broadcast event to all
      *
      * @param array $data
-     * @return \Nova\SDK\Resources\Trigger
+     * @return \Novu\SDK\Resources\Trigger
      */
     public function broadcastEvent(array $data)
     {
@@ -36,7 +36,7 @@ trait ManagesTriggers
     /**
      * Cancel triggered event
      *
-     * @return \Nova\SDK\Resources\Trigger
+     * @return \Novu\SDK\Resources\Trigger
      */
     public function cancelEvent($transactionId)
     {

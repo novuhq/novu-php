@@ -9,6 +9,7 @@ use Novu\SDK\Exceptions\IsEmpty;
 class Novu
 {
     use MakeHttpRequests,
+        Actions\ManagesTopics,
         Actions\ManagesSubscribers,
         Actions\ManagesActivity,
         Actions\ManagesChanges,
@@ -22,14 +23,14 @@ class Novu
         Actions\ManagesNotificationTemplates;
 
     /**
-     * The Nova API Key.
+     * The Novu API Key.
      *
      * @var string
      */
     protected $apiKey;
 
      /**
-     * The Nova API Base URL.
+     * The Novu API Base URL.
      *
      * @var string
      */
