@@ -9,6 +9,7 @@ use Novu\SDK\Exceptions\IsEmpty;
 class Novu
 {
     use MakeHttpRequests,
+        Actions\ManagesTopics,
         Actions\ManagesSubscribers,
         Actions\ManagesActivity,
         Actions\ManagesChanges,
