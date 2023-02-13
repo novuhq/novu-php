@@ -23,6 +23,7 @@ composer require unicodeveloper/novu
     * [Novu API Reference](https://docs.novu.co/api/overview/)
     * [Events](#events)
     * [Subscribers](#subscribers)
+    * [Topics](#topics)
     * [Activity](#activity)
     * [Integrations](#integrations)
     * [Notification Templates](#notification-templates)
@@ -138,6 +139,38 @@ $novu->markSubscriberFeedMessageAsSeen($subscriberId, $messageId, []);
 
 // Mark message action as seen
 $novu->markSubscriberMessageActionAsSeen($subscriberId, $messageId, $type, []);
+
+```
+
+## TOPICS
+
+```php
+
+// Create a Topic
+$novu->createTopic($topicName);
+
+// Fetch all topics
+$novu->getTopics();
+
+// Get a topic
+$novu->topic($topicKey);
+
+// Add subscribers to a topic
+$subscribers = [
+    '63e271488c028c44fd3a64e7',
+    '3445'
+];
+$novu->topic($topicKey)->addSubscribers($subscribers);
+
+// Remove subscribers from a topic
+$subscribers = [
+    '63e271488c028c44fd3a64e7',
+    '3445'
+];
+$novu->topic($topicKey)->removeSubscribers($subscribers);
+
+// Rename a topic
+$novu->topic($topicKey)->rename($topicName);
 
 ```
 
