@@ -64,7 +64,7 @@ $response = $novu->triggerEvent([
 ])->toArray();
 ```
 
-***Trigger** an event - [send notification to topics](https://docs.novu.co/platform/topics#sending-a-notification-to-a-topic)
+**Trigger** an event - [send notification to topics](https://docs.novu.co/platform/topics#sending-a-notification-to-a-topic)
 
 ```php
 $response = $novu->triggerEvent([
