@@ -62,6 +62,25 @@ $response = $novu->triggerEvent([
         'phone' => '07983882186'
     ]
 ])->toArray();
+```
+
+**Trigger** an event - [send notification to topics](https://docs.novu.co/platform/topics#sending-a-notification-to-a-topic)
+
+```php
+$response = $novu->triggerEvent([
+    'name' => '<event_name>',
+    'payload' => ['customVariables' => 'Hello'],
+    'to' => [
+        [
+            'type' => 'Topic',
+            'topicKey' => $topicKey
+        ],
+        [
+            'type' => 'Topic',
+            'topicKey' => $topicSecondKey
+        ]
+    ]
+])->toArray();
 
 ```
 
