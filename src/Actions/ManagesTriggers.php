@@ -21,6 +21,19 @@ trait ManagesTriggers
     }
 
     /**
+     * Bulk Trigger event
+     *
+     * @param array $data
+     * @return \Novu\SDK\Resources\Trigger
+     */
+    public function bulkTriggerEvent(array $data)
+    {
+        $response = $this->post("events/trigger/bulk", ['events' => $data])['data'];
+
+        return new Trigger($response, $this);
+    }
+
+    /**
      * Broadcast event to all
      *
      * @param array $data

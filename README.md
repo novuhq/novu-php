@@ -55,11 +55,33 @@ Now, you can use the `Novu` instance to perform all the actions that Novu's API 
 
 ```php
 $response = $novu->triggerEvent([
-    'name' => '<REPLACE_WITH_EVENT_NAME_FROM_ADMIN_PANEL>',
+    'name' => '<REPLACE_WITH_TEMPLATE_NAME_FROM_ADMIN_PANEL>',
     'payload' => ['customVariables' => 'Hello'],
     'to' => [
         'subscriberId' => '<SUBSCRIBER_IDENTIFIER_FROM_ADMIN_PANEL>',
         'phone' => '07983882186'
+    ]
+])->toArray();
+```
+
+**Bulk Trigger** events:
+
+```php
+$response = $novu->bulkTriggerEvent([
+    [
+        'name' => '<REPLACE_WITH_TEMPLATE_NAME_FROM_ADMIN_PANEL>', 
+        'to' => '<SUBSCRIBER_IDENTIFIER_FROM_ADMIN_PANEL>', 
+        'payload' => ['customVariables' => 'Hello']
+    ],
+    [
+        'name' => '<REPLACE_WITH_TEMPLATE_NAME_FROM_ADMIN_PANEL>', 
+        'to' => '<SUBSCRIBER_IDENTIFIER_FROM_ADMIN_PANEL>', 
+        'payload' => ['customVariables' => 'World']
+    ],
+    [
+        'name' => '<REPLACE_WITH_TEMPLATE_NAME_FROM_ADMIN_PANEL>', 
+        'to' => '<SUBSCRIBER_IDENTIFIER_FROM_ADMIN_PANEL>', 
+        'payload' => ['customVariables' => 'Again']
     ]
 ])->toArray();
 ```
