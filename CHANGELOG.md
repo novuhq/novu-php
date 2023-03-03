@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+1.0.4 / 2023-03-03
+===================
+
+* Add support for triggering bulk events. 
+
 1.0.3 / 2023-02-17
 ===================
 
