@@ -4,75 +4,186 @@ namespace Novu\SDK\Resources;
 
 class Change extends Resource
 {
+
+    public function __construct(
+
+        /**
+         * The internal id Novu generated.
+         *
+         * @var string
+         */
+        private readonly string $id,
+
+        /**
+         * The creator Id
+         *
+         * @var string
+         */
+        private readonly string $creatorId,
+
+        /**
+         * The organization id
+         *
+         * @var string
+         */
+        private readonly string $organizationId,
+
+        /**
+         * The environment Id
+         *
+         * @var string
+         */
+        private readonly string $environmentId,
+
+        /**
+         * The entity Id
+         *
+         * @var string
+         */
+        private readonly string $entityId,
+
+        /**
+         * The parent Id
+         *
+         * @var string
+         */
+        private readonly string $parentId,
+
+        /**
+         * The enabled status
+         *
+         * @var bool
+         */
+        private readonly bool $enabled,
+
+        /**
+         * The type
+         *
+         * @var string
+         */
+        private readonly string $type,
+
+        /**
+         * The change
+         *
+         * @var string
+         */
+        private readonly string $change,
+
+        /**
+         * The date/time it was created.
+         *
+         * @var string
+         */
+        private readonly string $createdAt
+    ) {
+    }
+
+
+
     /**
-     * The internal id Novu generated.
+     * Gets the internal id Novu generated.
      *
      * @var string
      */
-    public $id;
+    public function getId(): string
+    {
+        return $this->id;
+    }
 
     /**
-     * The creator Id
+     * Gets the creator Id
      *
      * @var string
      */
-    public $creatorId;
+    public function getCreatorId(): string
+    {
+        return $this->creatorId;
+    }
+
 
     /**
-     * The organization id
+     * Gets the organization Id
      *
      * @var string
      */
-    public $organizationId;
+    public function getOrganizationId(): string
+    {
+        return $this->organizationId;
+    }
 
     /**
-     * The environment Id
+     * Gets the environment Id
      *
      * @var string
      */
-    public $environmentId;
+    public function getEnvironmentId(): string
+    {
+        return $this->environmentId;
+    }
 
     /**
-     * The entity Id
+     * Gets the entity Id
      *
      * @var string
      */
-    public $entityId;
+    public function getEntityId(): string
+    {
+        return $this->entityId;
+    }
 
     /**
-     * The parent Id
+     * Gets the parent Id
      *
      * @var string
      */
-    public $parentId;
+    public function getParentId(): string
+    {
+        return $this->parentId;
+    }
 
     /**
-     * The enabled status
+     * Gets the enabled status
      *
      * @var bool
      */
-    public $enabled;
+    public function isEnabled(): bool
+    {
+        return $this->enabled;
+    }
+
 
     /**
-     * The type
+     * Gets the type
      *
      * @var string
      */
-    public $type;
+    public function getType(): string
+    {
+        return $this->type;
+    }
 
     /**
-     * The change
+     * Gets the change
      *
      * @var string
      */
-    public $change;
+    public function getChange(): string
+    {
+        return $this->change;
+    }
 
     /**
-     * The date/time it was created.
+     * Gets the date/time it was created.
      *
      * @var string
      */
-    public $createdAt;
+    public function getCreatedAt(): string
+    {
+        return $this->createdAt;
+    }
+
+
 
     /**
      * Return the array form of Change object.
@@ -86,7 +197,7 @@ class Change extends Resource
         unset($publicProperties['attributes']);
         unset($publicProperties['novu']);
 
-        return array_filter($publicProperties, function ($value) { 
+        return array_filter($publicProperties, function ($value) {
             return null !== $value;
         });
     }
