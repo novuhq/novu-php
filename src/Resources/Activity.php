@@ -4,19 +4,43 @@ namespace Novu\SDK\Resources;
 
 class Activity extends Resource
 {
-    /**
-     * The internal id Novu generated for the activity graph stats.
-     *
-     * @var string
-     */
-    public $id;
+
+    public function __construct(
+
+        /**
+         * The internal id Novu generated for the activity graph stats.
+         *
+         * @var string
+         */
+        private readonly string $id,
+    
+        /**
+         * The number of stats
+         *
+         * @var int
+         */
+        private readonly int $count
+        )
+    {}
 
     /**
-     * The number of stats
-     *
-     * @var int
+     * Gets the internal id Novu generated for the activity graph stats
+     * 
+     * @var string
      */
-    public $count;
+    public function getId(): string {
+        return $this->id;
+    }
+
+    
+    /**
+     * Gets number of stats
+     * 
+     * @var string
+     */
+    public function getCount(): int {
+        return $this->count;
+    }
 
     /**
      * Return the array form of Activity object.
@@ -25,13 +49,9 @@ class Activity extends Resource
      */
     public function toArray(): array
     {
-        $publicProperties = get_object_vars($this);
-
-        unset($publicProperties['attributes']);
-        unset($publicProperties['novu']);
-
-        return array_filter($publicProperties, function ($value) { 
-            return null !== $value;
-        });
+        return [
+            "id" => $this->id,
+            "count" => $this->count
+        ];
     }
 }
