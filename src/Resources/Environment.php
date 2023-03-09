@@ -4,61 +4,160 @@ namespace Novu\SDK\Resources;
 
 class Environment extends Resource
 {
+
+    public function __construct(
+
+
+        /**
+         * The internal id Novu generated.
+         *
+         * @var string
+         */
+        private readonly string $id,
+
+        /**
+         * The userId.
+         *
+         * @var string
+         */
+        private readonly string $userId,
+
+        /**
+         * The name of the environment
+         *
+         * @var string
+         */
+        private readonly string $name,
+
+        /**
+         * The organization id
+         *
+         * @var string
+         */
+        private readonly string $organizationId,
+
+        /**
+         * The identifier
+         *
+         * @var string
+         */
+        private readonly string $identifier,
+
+        /**
+         * The api keys of the environment
+         *
+         * @var array
+         */
+        private readonly array $apiKeys,
+
+        /**
+         * The parent Id
+         *
+         * @var string
+         */
+        private readonly string $parentId,
+
+        /**
+         * The widget
+         *
+         * @var object
+         */
+        private readonly object $widget,
+
+    ) {
+    }
+
+
+
+
     /**
-     * The internal id Novu generated.
+     * Gets the internal id Novu generated.
      *
      * @var string
      */
-    public $id;
+    public function getId(): string
+    {
+        return $this->id;
+    }
 
-     /**
-     * The userId.
+
+
+    /**
+     * Gets the user Id
      *
      * @var string
      */
-    public $userId;
+    public function getUserId(): string
+    {
+        return $this->userId;
+    }
+
+
 
     /**
-     * The name of the environment
+     * Gets the name of the environment.
      *
      * @var string
      */
-    public $name;
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+
 
     /**
-     * The organization id
+     * Gets the organization Id
      *
      * @var string
      */
-    public $organizationId;
+    public function getOrganizationId(): string
+    {
+        return $this->organizationId;
+    }
+
 
     /**
-     * The identifier
+     * Gets the identifier
      *
      * @var string
      */
-    public $identifier;
+    public function getIdentifier(): string
+    {
+        return $this->identifier;
+    }
 
     /**
-     * The api keys of the environment
+     * Gets the api keys of the environment
      *
      * @var array
      */
-    public $apiKeys;
+    public function getApiKeys(): array
+    {
+        return $this->apiKeys;
+    }
+
 
     /**
-     * The parent Id
+     * Gets the parent Id
      *
      * @var string
      */
-    public $parentId;
+    public function getParentId(): string
+    {
+        return $this->parentId;
+    }
 
     /**
-     * The widget
+     * Gets the widget
      *
      * @var object
      */
-    public $widget;
+    public function getWidget(): object
+    {
+        return $this->widget;
+    }
+
 
     /**
      * Return the array form of Environment object.
@@ -67,13 +166,15 @@ class Environment extends Resource
      */
     public function toArray(): array
     {
-        $publicProperties = get_object_vars($this);
-
-        unset($publicProperties['attributes']);
-        unset($publicProperties['novu']);
-
-        return array_filter($publicProperties, function ($value) { 
-            return null !== $value;
-        });
+        return [
+            "id" => $this->id,
+            "userId" => $this->userId,
+            "name" => $this->name,
+            "organizationId" => $this->organizationId,
+            "identifier" => $this->identifier,
+            "apiKeys" => $this->apiKeys,
+            "parentId" => $this->parentId,
+            "widget" => $this->widget
+        ];
     }
 }
