@@ -78,7 +78,7 @@ class Novu
      * @param  \GuzzleHttp\Client|null  $client
      * @return $this
      */
-    public function setApiKey($apiKey, $client = null)
+    public function setApiKey($apiKey, $client = null): self
     {
         $this->apiKey = $apiKey;
 
@@ -101,7 +101,7 @@ class Novu
      * @param  int  $timeout
      * @return $this
      */
-    public function setTimeout($timeout)
+    public function setTimeout($timeout): self
     {
         $this->timeout = $timeout;
 
@@ -113,8 +113,18 @@ class Novu
      *
      * @return int
      */
-    public function getTimeout()
+    public function getTimeout(): int
     {
         return $this->timeout;
+    }
+
+    /**
+     * Get the API Base Uri
+     *
+     * @return string
+     */
+    public function getBaseUri(): string
+    {
+        return $this->baseUri;
     }
 }
