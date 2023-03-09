@@ -192,13 +192,17 @@ class Change extends Resource
      */
     public function toArray(): array
     {
-        $publicProperties = get_object_vars($this);
-
-        unset($publicProperties['attributes']);
-        unset($publicProperties['novu']);
-
-        return array_filter($publicProperties, function ($value) {
-            return null !== $value;
-        });
+        return [
+            "id" => $this->id,
+            "creatorId" => $this->creatorId,
+            "organizationId" => $this->organizationId,
+            "environmentId" => $this->environmentId,
+            "entityId" => $this->entityId,
+            "parentId" => $this->parentId,
+            "enabled" => $this->enabled,
+            "type" => $this->type,
+            "change" => $this->change,
+            "createdAt" => $this->createdAt
+        ];
     }
 }
