@@ -2,141 +2,241 @@
 
 namespace Novu\SDK\Resources;
 
+use Novu\SDK\Novu;
+
 class ExecutionDetail extends Resource
 {
-     /**
-     * The internal id Novu generated.
-     *
-     * @var string
-     */
-    public $id;
+    public function __construct(
+        /**
+         * The internal id Novu generated.
+         *
+         * @var string
+         */
+        private readonly string $id,
 
-    /**
-     * The job Id
-     *
-     * @var string
-     */
-    public $jobId;
+        /**
+         * The job Id.
+         *
+         * @var string
+         */
+        private readonly string $jobId,
 
-    /**
-     * The organization id
-     *
-     * @var string
-     */
-    public $organizationId;
+        /**
+         * The organization id.
+         *
+         * @var string
+         */
+        private readonly string $organizationId,
 
-    /**
-     * The environment Id
-     *
-     * @var string
-     */
-    public $environmentId;
+        /**
+         * The environment Id.
+         *
+         * @var string
+         */
+        private readonly string $environmentId,
 
-    /**
-     * The notification Id
-     *
-     * @var string
-     */
-    public $notificationId;
+        /**
+         * The notification Id.
+         *
+         * @var string
+         */
+        private readonly string $notificationId,
 
-    /**
-     * The notification template Id
-     *
-     * @var string
-     */
-    public $notificationTemplateId;
+        /**
+         * The notification template Id.
+         *
+         * @var string
+         */
+        private readonly string $notificationTemplateId,
 
-    /**
-     * The subscriber Id
-     *
-     * @var string
-     */
-    public $subscriberId;
+        /**
+         * The subscriber Id.
+         *
+         * @var string
+         */
+        private readonly string $subscriberId,
 
-    /**
-     * The message Id
-     *
-     * @var string
-     */
-    public $messageId;
+        /**
+         * The message Id.
+         *
+         * @var string
+         */
+        private readonly string $messageId,
 
-    /**
-     * The provider Id
-     *
-     * @var string
-     */
-    public $providerId;
+        /**
+         * The provider Id.
+         *
+         * @var string
+         */
+        private readonly string $providerId,
 
-    /**
-     * The transaction Id
-     *
-     * @var string
-     */
-    public $transactionId;
+        /**
+         * The transaction Id.
+         *
+         * @var string
+         */
+        private readonly string $transactionId,
 
-    /**
-     * The channel
-     *
-     * @var string
-     */
-    public $channel;
+        /**
+         * The channel.
+         *
+         * @var string
+         */
+        private readonly string $channel,
 
-    /**
-     * The detail
-     *
-     * @var string
-     */
-    public $detail;
+        /**
+         * The detail.
+         *
+         * @var string
+         */
+        private readonly string $detail,
 
-    /**
-     * The source
-     *
-     * @var string
-     */
-    public $source;
+        /**
+         * The source.
+         *
+         * @var string
+         */
+        private readonly string $source,
 
-    /**
-     * The status
-     *
-     * @var bool
-     */
-    public $status;
+        /**
+         * The status.
+         *
+         * @var bool
+         */
+        private readonly bool $status,
 
-    /**
-     * The is test status.
-     *
-     * @var bool
-     */
-    public $isTest;
+        /**
+         * The is test status.
+         *
+         * @var bool
+         */
+        private readonly bool $isTest,
 
-    /**
-     * The is retry status
-     *
-     * @var bool
-     */
-    public $isRetry;
+        /**
+         * The is retry status.
+         *
+         * @var bool
+         */
+        private readonly bool $isRetry,
 
-    /**
-     * The date/time it was created.
-     *
-     * @var string
-     */
-    public $createdAt;
+        /**
+         * The date/time it was created.
+         *
+         * @var string
+         */
+        private readonly string $createdAt,
+    ) {
+    }
 
     /**
      * Return the array form of ExecutionDetail object.
-     *
      * @return array
      */
     public function toArray(): array
     {
-        $publicProperties = get_object_vars($this);
+        return [
+            'id'                     => $this->id,
+            'jobId'                  => $this->jobId,
+            'organizationId'         => $this->organizationId,
+            'environmentId'          => $this->environmentId,
+            'notificationId'         => $this->notificationId,
+            'notificationTemplateId' => $this->notificationTemplateId,
+            'subscriberId'           => $this->subscriberId,
+            'messageId'              => $this->messageId,
+            'providerId'             => $this->providerId,
+            'transactionId'          => $this->transactionId,
+            'channel'                => $this->channel,
+            'detail'                 => $this->detail,
+            'source'                 => $this->source,
+            'status'                 => $this->status,
+            'isTest'                 => $this->isTest,
+            'isRetry'                => $this->isRetry,
+            'createdAt'              => $this->createdAt,
+        ];
+    }
 
-        unset($publicProperties['attributes']);
-        unset($publicProperties['novu']);
+    public function getId(): string
+    {
+        return $this->id;
+    }
 
-        return array_filter($publicProperties, function ($value) { 
-            return null !== $value;
-        });
+    public function getJobId(): string
+    {
+        return $this->jobId;
+    }
+
+    public function getOrganizationId(): string
+    {
+        return $this->organizationId;
+    }
+
+    public function getEnvironmentId(): string
+    {
+        return $this->environmentId;
+    }
+
+    public function getNotificationId(): string
+    {
+        return $this->notificationId;
+    }
+
+    public function getNotificationTemplateId(): string
+    {
+        return $this->notificationTemplateId;
+    }
+
+    public function getSubscriberId(): string
+    {
+        return $this->subscriberId;
+    }
+
+    public function getMessageId(): string
+    {
+        return $this->messageId;
+    }
+
+    public function getProviderId(): string
+    {
+        return $this->providerId;
+    }
+
+    public function getTransactionId(): string
+    {
+        return $this->transactionId;
+    }
+
+    public function getChannel(): string
+    {
+        return $this->channel;
+    }
+
+    public function getDetail(): string
+    {
+        return $this->detail;
+    }
+
+    public function getSource(): string
+    {
+        return $this->source;
+    }
+
+    public function isStatus(): bool
+    {
+        return $this->status;
+    }
+
+    public function isTest(): bool
+    {
+        return $this->isTest;
+    }
+
+    public function isRetry(): bool
+    {
+        return $this->isRetry;
+    }
+
+    public function getCreatedAt(): string
+    {
+        return $this->createdAt;
     }
 }

@@ -22,33 +22,7 @@ class Novu
         Actions\ManagesNotificationGroups,
         Actions\ManagesNotificationTemplates;
 
-    /**
-     * The Novu API Key.
-     *
-     * @var string
-     */
-    protected $apiKey;
-
-     /**
-     * The Novu API Base URL.
-     *
-     * @var string
-     */
-    protected $baseUri = 'https://api.novu.co/v1/';
-
-    /**
-     * The Guzzle HTTP Client instance.
-     *
-     * @var \GuzzleHttp\Client
-     */
-    public $client;
-
-    /**
-     * Number of seconds a request is retried.
-     *
-     * @var int
-     */
-    public $timeout = 30;
+ 
 
     /**
      * Create a new Novu instance.
@@ -57,23 +31,44 @@ class Novu
      * @param  \GuzzleHttp\Client|null  $guzzle
      * @return void
      */
-    public function __construct($apiKey = null, HttpClient $client = null)
+    public function __construct(
+    /**
+         * The Novu API Key.
+         *
+         * @var string
+         */
+        protected string $apiKey,
+
+        /**
+         * The Novu API Base URL.
+         *
+         * @var string
+         */
+        protected string $baseUri = 'https://api.novu.co/v1/',
+
+        /**
+         * The Guzzle HTTP Client instance.
+         *
+         * @var \GuzzleHttp\Client
+         */
+        public ?\GuzzleHttp\Client $client = null,
+
+        /**
+         * Number of seconds a request is retried.
+         *
+         * @var int
+         */
+        public int $timeout = 30,
+
+    )
     {
-        if ( is_null($apiKey)) {
-            throw IsNull::make('API KEY');
-        }
 
         if( empty($apiKey)) {
             throw isEmpty::make('API KEY');
         }
 
-        if (! is_null($apiKey)) {
-            $this->setApiKey($apiKey, $client);
-        }
-
-        if (! is_null($client)) {
-            $this->client = $client;
-        }
+        $this->setApiKey($apiKey, $client);
+        $this->client = $client;
     }
 
     /**
@@ -83,7 +78,7 @@ class Novu
      * @param  \GuzzleHttp\Client|null  $client
      * @return $this
      */
-    public function setApiKey($apiKey, $client = null)
+    public function setApiKey($apiKey, $client = null): self
     {
         $this->apiKey = $apiKey;
 
@@ -106,7 +101,7 @@ class Novu
      * @param  int  $timeout
      * @return $this
      */
-    public function setTimeout($timeout)
+    public function setTimeout($timeout): self
     {
         $this->timeout = $timeout;
 
@@ -118,8 +113,18 @@ class Novu
      *
      * @return int
      */
-    public function getTimeout()
+    public function getTimeout(): int
     {
         return $this->timeout;
+    }
+
+    /**
+     * Get the API Base Uri
+     *
+     * @return string
+     */
+    public function getBaseUri(): string
+    {
+        return $this->baseUri;
     }
 }

@@ -4,76 +4,160 @@ namespace Novu\SDK\Resources;
 
 class Environment extends Resource
 {
-    /**
-     * The internal id Novu generated.
-     *
-     * @var string
-     */
-    public $id;
+    public function __construct(
+        /**
+         * The internal id Novu generated.
+         *
+         * @var string
+         */
+        private readonly string $id,
 
-     /**
-     * The userId.
-     *
-     * @var string
-     */
-    public $userId;
+        /**
+         * The userId.
+         *
+         * @var string
+         */
+        private readonly string $userId,
+
+        /**
+         * The name of the environment.
+         *
+         * @var string
+         */
+        private readonly string $name,
+
+        /**
+         * The organization id.
+         *
+         * @var string
+         */
+        private readonly string $organizationId,
+
+        /**
+         * The identifier.
+         *
+         * @var string
+         */
+        private readonly string $identifier,
+
+        /**
+         * The api keys of the environment.
+         *
+         * @var array
+         */
+        private readonly array $apiKeys,
+
+        /**
+         * The parent Id.
+         *
+         * @var string
+         */
+        private readonly string $parentId,
+
+        /**
+         * The widget.
+         *
+         * @var object
+         */
+        private readonly object $widget,
+    ) {
+    }
 
     /**
-     * The name of the environment
+     * Gets the internal id Novu generated.
      *
-     * @var string
+     * @return string
      */
-    public $name;
+    public function getId(): string
+    {
+        return $this->id;
+    }
 
     /**
-     * The organization id
+     * Gets the user Id.
      *
-     * @var string
+     * @return string
      */
-    public $organizationId;
+    public function getUserId(): string
+    {
+        return $this->userId;
+    }
 
     /**
-     * The identifier
+     * Gets the name of the environment.
      *
-     * @var string
+     * @return string
      */
-    public $identifier;
+    public function getName(): string
+    {
+        return $this->name;
+    }
 
     /**
-     * The api keys of the environment
+     * Gets the organization Id.
      *
-     * @var array
+     * @return string
      */
-    public $apiKeys;
+    public function getOrganizationId(): string
+    {
+        return $this->organizationId;
+    }
 
     /**
-     * The parent Id
+     * Gets the identifier.
      *
-     * @var string
+     * @return string
      */
-    public $parentId;
+    public function getIdentifier(): string
+    {
+        return $this->identifier;
+    }
 
     /**
-     * The widget
+     * Gets the api keys of the environment.
      *
-     * @var object
+     * @return array
      */
-    public $widget;
+    public function getApiKeys(): array
+    {
+        return $this->apiKeys;
+    }
+
+    /**
+     * Gets the parent Id.
+     *
+     * @return string
+     */
+    public function getParentId(): string
+    {
+        return $this->parentId;
+    }
+
+    /**
+     * Gets the widget.
+     *
+     * @return object
+     */
+    public function getWidget(): object
+    {
+        return $this->widget;
+    }
 
     /**
      * Return the array form of Environment object.
-     *
      * @return array
      */
     public function toArray(): array
     {
-        $publicProperties = get_object_vars($this);
-
-        unset($publicProperties['attributes']);
-        unset($publicProperties['novu']);
-
-        return array_filter($publicProperties, function ($value) { 
-            return null !== $value;
-        });
+        return [
+            'id'             => $this->id,
+            'userId'         => $this->userId,
+            'name'           => $this->name,
+            'organizationId' => $this->organizationId,
+            'identifier'     => $this->identifier,
+            'apiKeys'        => $this->apiKeys,
+            'parentId'       => $this->parentId,
+            'widget'         => $this->widget,
+        ];
     }
 }
