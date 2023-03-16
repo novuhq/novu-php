@@ -4,9 +4,7 @@ namespace Novu\SDK\Resources;
 
 class Change extends Resource
 {
-
     public function __construct(
-
         /**
          * The internal id Novu generated.
          *
@@ -15,56 +13,56 @@ class Change extends Resource
         private readonly string $id,
 
         /**
-         * The creator Id
+         * The creator Id.
          *
          * @var string
          */
         private readonly string $creatorId,
 
         /**
-         * The organization id
+         * The organization id.
          *
          * @var string
          */
         private readonly string $organizationId,
 
         /**
-         * The environment Id
+         * The environment Id.
          *
          * @var string
          */
         private readonly string $environmentId,
 
         /**
-         * The entity Id
+         * The entity Id.
          *
          * @var string
          */
         private readonly string $entityId,
 
         /**
-         * The parent Id
+         * The parent Id.
          *
          * @var string
          */
         private readonly string $parentId,
 
         /**
-         * The enabled status
+         * The enabled status.
          *
          * @var bool
          */
         private readonly bool $enabled,
 
         /**
-         * The type
+         * The type.
          *
          * @var string
          */
         private readonly string $type,
 
         /**
-         * The change
+         * The change.
          *
          * @var string
          */
@@ -79,12 +77,10 @@ class Change extends Resource
     ) {
     }
 
-
-
     /**
      * Gets the internal id Novu generated.
      *
-     * @var string
+     * @return string
      */
     public function getId(): string
     {
@@ -92,20 +88,19 @@ class Change extends Resource
     }
 
     /**
-     * Gets the creator Id
+     * Gets the creator Id.
      *
-     * @var string
+     * @return string
      */
     public function getCreatorId(): string
     {
         return $this->creatorId;
     }
 
-
     /**
-     * Gets the organization Id
+     * Gets the organization Id.
      *
-     * @var string
+     * @return string
      */
     public function getOrganizationId(): string
     {
@@ -113,9 +108,9 @@ class Change extends Resource
     }
 
     /**
-     * Gets the environment Id
+     * Gets the environment Id.
      *
-     * @var string
+     * @return string
      */
     public function getEnvironmentId(): string
     {
@@ -123,9 +118,9 @@ class Change extends Resource
     }
 
     /**
-     * Gets the entity Id
+     * Gets the entity Id.
      *
-     * @var string
+     * @return string
      */
     public function getEntityId(): string
     {
@@ -133,9 +128,9 @@ class Change extends Resource
     }
 
     /**
-     * Gets the parent Id
+     * Gets the parent Id.
      *
-     * @var string
+     * @return string
      */
     public function getParentId(): string
     {
@@ -143,20 +138,19 @@ class Change extends Resource
     }
 
     /**
-     * Gets the enabled status
+     * Gets the enabled status.
      *
-     * @var bool
+     * @return bool
      */
     public function isEnabled(): bool
     {
         return $this->enabled;
     }
 
-
     /**
-     * Gets the type
+     * Gets the type.
      *
-     * @var string
+     * @return string
      */
     public function getType(): string
     {
@@ -164,9 +158,9 @@ class Change extends Resource
     }
 
     /**
-     * Gets the change
+     * Gets the change.
      *
-     * @var string
+     * @return string
      */
     public function getChange(): string
     {
@@ -176,33 +170,30 @@ class Change extends Resource
     /**
      * Gets the date/time it was created.
      *
-     * @var string
+     * @return string
      */
     public function getCreatedAt(): string
     {
         return $this->createdAt;
     }
 
-
-
     /**
      * Return the array form of Change object.
-     *
      * @return array
      */
     public function toArray(): array
     {
         return [
-            "id" => $this->id,
-            "creatorId" => $this->creatorId,
-            "organizationId" => $this->organizationId,
-            "environmentId" => $this->environmentId,
-            "entityId" => $this->entityId,
-            "parentId" => $this->parentId,
-            "enabled" => $this->enabled,
-            "type" => $this->type,
-            "change" => $this->change,
-            "createdAt" => $this->createdAt
+            'id'             => $this->id,
+            'creatorId'      => $this->creatorId,
+            'organizationId' => $this->organizationId,
+            'environmentId'  => $this->environmentId,
+            'entityId'       => $this->entityId,
+            'parentId'       => $this->parentId,
+            'enabled'        => $this->enabled,
+            'type'           => $this->type,
+            'change'         => $this->change,
+            'createdAt'      => $this->createdAt,
         ];
     }
 }
