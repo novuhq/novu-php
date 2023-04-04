@@ -64,14 +64,17 @@ $response = $novu->triggerEvent([
 ])->toArray();
 ```
 
-/** You can send to a list of subscribers like so: **/ 
+You can send to a list of subscribers like so:
+
+```php
 $response = $api->triggerEvent([
         'name' => '<REPLACE_WITH_TEMPLATE_TRIGGER_ID_FROM_ADMIN_PANEL>',
         'payload' => ['Hello' => 'World'],
         'to' => [
             'subscriberId' => ['63b7e613711db04e816bf2a1','445','4489']
         ]
-]);
+])->toArray();
+```
 
 **Trigger** an event - [send notification to topics](https://docs.novu.co/platform/topics#sending-a-notification-to-a-topic)
 
