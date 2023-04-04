@@ -166,7 +166,12 @@ $novu->markSubscriberMessageActionAsSeen($subscriberId, $messageId, $type, []);
 ```php
 
 // Create a Topic
-$novu->createTopic($topicName);
+$topic = [
+ 'key' => 'comments',
+ 'name' => 'All Comments'
+];
+
+$novu->createTopic($topic);
 
 // Fetch all topics
 $novu->getTopics();
