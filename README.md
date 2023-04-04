@@ -51,11 +51,11 @@ Now, you can use the `Novu` instance to perform all the actions that Novu's API 
 
 ## EVENTS
 
-**Trigger** an event - send notification to subscribers:
+**Trigger** an event - send notification to a subscriber like this:
 
 ```php
 $response = $novu->triggerEvent([
-    'name' => '<REPLACE_WITH_EVENT_NAME_FROM_ADMIN_PANEL>',
+    'name' => '<REPLACE_WITH_TEMPLATE_TRIGGER_ID_FROM_ADMIN_PANEL>',
     'payload' => ['customVariables' => 'Hello'],
     'to' => [
         'subscriberId' => '<SUBSCRIBER_IDENTIFIER_FROM_ADMIN_PANEL>',
@@ -63,6 +63,15 @@ $response = $novu->triggerEvent([
     ]
 ])->toArray();
 ```
+
+/** You can send to a list of subscribers like so: **/ 
+$response = $api->triggerEvent([
+        'name' => '<REPLACE_WITH_TEMPLATE_TRIGGER_ID_FROM_ADMIN_PANEL>',
+        'payload' => ['Hello' => 'World'],
+        'to' => [
+            'subscriberId' => ['63b7e613711db04e816bf2a1','445','4489']
+        ]
+]);
 
 **Trigger** an event - [send notification to topics](https://docs.novu.co/platform/topics#sending-a-notification-to-a-topic)
 
