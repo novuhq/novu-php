@@ -67,7 +67,7 @@ $response = $novu->triggerEvent([
 You can send to a list of subscribers like so:
 
 ```php
-$response = $api->triggerEvent([
+$response = $novu->triggerEvent([
         'name' => '<REPLACE_WITH_TEMPLATE_TRIGGER_ID_FROM_ADMIN_PANEL>',
         'payload' => ['Hello' => 'World'],
         'to' => [
