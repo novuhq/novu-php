@@ -28,6 +28,7 @@ composer require unicodeveloper/novu
     * [Topics](#topics)
     * [Activity](#activity)
     * [Integrations](#integrations)
+    * [Notifications](#notifications)
     * [Notification Templates](#notification-templates)
     * [Notification Groups](#notification-groups)
     * [Changes](#changes)
@@ -35,6 +36,7 @@ composer require unicodeveloper/novu
     * [Feeds](#feeds)
     * [Messages](#messages)
     * [Execution Details](#execution-details)
+    * [Validate the MX Record setup for Inbound Parse functionality](#validate-the-mx-record-setup-for-inbound-parse-functionality)
 * [License](#license)
 
 ## Usage
@@ -270,6 +272,36 @@ $novu->deleteIntegration($integrationId);
 
 ```
 
+## NOTIFICATIONS
+
+```php
+
+// Get all notifications
+$novu->getNotifications()->toArray();
+
+// Get all notifications with query parameters
+$queryParams = [
+    'page' => 3
+];
+$novu->getNotifications($queryParams)->toArray();
+
+// Get one notification 
+$novu->getNotification($notificationId)->toArray();
+
+// Get notification stats
+$novu->getNotificationStats()->toArray();
+
+// Get Notification graph stats
+$novu->getNotificationGraphStats()->toArray();
+
+// Get Notification graph stats with query parameters
+$queryParams = [
+    'days' => 5
+];
+$novu->getNotificationGraphStats($queryParams)->toArray();
+
+```
+
 ## NOTIFICATION TEMPLATES
 
 ```php
@@ -425,6 +457,15 @@ $novu->getExecutionDetails([
     'notificationId' => '<insert-notification-id>',
     'subscriberId'   => '<insert-subscriber-id>'
 ])->toArray();
+
+```
+
+## Validate the MX Record setup for Inbound Parse functionality
+
+```php
+
+// Validate MX Record for Inbound Parse
+$novu->validateMXRecordForInboundParse()->toArray();
 
 ```
 
