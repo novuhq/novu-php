@@ -17,19 +17,25 @@ trait ManagesNotifications
      */
     public function getNotification($notificationId)
     {
-        $response = $this->get("notifications/{$notificationId}");
+        $response = $this->get("notifications/{$notificationId}")['data'];
 
         return new Notification($response, $this);
     }
 
      /**
      * Get All Notifications
-     *
+     * @param array $queryParams
      * @return \Novu\SDK\Resources\Notification
      */
-    public function getNotifications()
+    public function getNotifications(array $queryParams = [])
     {
-        $response = $this->get("notifications")['data'];
+        $uri = "notifications";
+
+        if(! empty($queryParams)) {
+            $uri .= '?' . http_build_query($queryParams);
+        }
+
+        $response = $this->get($uri);
 
         return new Notification($response, $this);
     }
@@ -48,13 +54,19 @@ trait ManagesNotifications
 
     /**
      * Get Notification Graph Stats
-     *
+     * @param array $queryParams
      * @return \Novu\SDK\Resources\NotificationGraphStats
      */
-    public function getNotificationGraphStats()
+    public function getNotificationGraphStats(array $queryParams = [])
     {
-        $response = $this->get("notifications/graph/stats")['data'];
+        $uri = "notifications/graph/stats";
 
+        if(! empty($queryParams)) {
+            $uri .= '?' . http_build_query($queryParams);
+        }
+
+        $response = $this->get($uri)['data'];
+    
         return new NotificationGraphStats($response, $this);
     }
 
