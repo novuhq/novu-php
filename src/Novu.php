@@ -12,6 +12,7 @@ class Novu
         Actions\ManagesTopics,
         Actions\ManagesSubscribers,
         Actions\ManagesActivity,
+        Actions\ManagesInboundParse,
         Actions\ManagesChanges,
         Actions\ManagesEnvironments,
         Actions\ManagesExecutionDetails,
