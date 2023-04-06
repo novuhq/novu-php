@@ -1,5 +1,7 @@
 # PHP NOVU SDK
 
+[<img src="https://super-static-assets.s3.amazonaws.com/1e9f5a51-c4c6-4fca-b6e8-25fa0186f139/images/1b0b8afa-a688-408a-bb0e-d30742073965.svg" align="right" width="250">](https://github.com/novuhq/novu)
+
 [![Latest Stable Version](https://poser.pugx.org/unicodeveloper/novu/v/stable.svg)](https://packagist.org/packages/unicodeveloper/novu)
 [![License](https://poser.pugx.org/unicodeveloper/novu/license.svg)](LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/unicodeveloper/novu.svg)](https://packagist.org/packages/unicodeveloper/novu)
@@ -26,6 +28,7 @@ composer require unicodeveloper/novu
     * [Topics](#topics)
     * [Activity](#activity)
     * [Integrations](#integrations)
+    * [Notifications](#notifications)
     * [Notification Templates](#notification-templates)
     * [Notification Groups](#notification-groups)
     * [Changes](#changes)
@@ -33,6 +36,7 @@ composer require unicodeveloper/novu
     * [Feeds](#feeds)
     * [Messages](#messages)
     * [Execution Details](#execution-details)
+    * [Validate the MX Record setup for Inbound Parse functionality](#validate-the-mx-record-setup-for-inbound-parse-functionality)
 * [License](#license)
 
 ## Usage
@@ -51,11 +55,11 @@ Now, you can use the `Novu` instance to perform all the actions that Novu's API 
 
 ## EVENTS
 
-**Trigger** an event - send notification to a subscriber like this:
+**Trigger** an event - send notification to subscribers:
 
 ```php
 $response = $novu->triggerEvent([
-    'name' => '<REPLACE_WITH_TEMPLATE_TRIGGER_ID_FROM_ADMIN_PANEL>',
+    'name' => '<REPLACE_WITH_TEMPLATE_NAME_FROM_ADMIN_PANEL>',
     'payload' => ['customVariables' => 'Hello'],
     'to' => [
         'subscriberId' => '<SUBSCRIBER_IDENTIFIER_FROM_ADMIN_PANEL>',
@@ -64,15 +68,25 @@ $response = $novu->triggerEvent([
 ])->toArray();
 ```
 
-You can send to a list of subscribers like so:
+**Bulk Trigger** events:
 
 ```php
-$response = $novu->triggerEvent([
-        'name' => '<REPLACE_WITH_TEMPLATE_TRIGGER_ID_FROM_ADMIN_PANEL>',
-        'payload' => ['Hello' => 'World'],
-        'to' => [
-            'subscriberId' => ['63b7e613711db04e816bf2a1','445','4489']
-        ]
+$response = $novu->bulkTriggerEvent([
+    [
+        'name' => '<REPLACE_WITH_TEMPLATE_NAME_FROM_ADMIN_PANEL>', 
+        'to' => '<SUBSCRIBER_IDENTIFIER_FROM_ADMIN_PANEL>', 
+        'payload' => ['customVariables' => 'Hello']
+    ],
+    [
+        'name' => '<REPLACE_WITH_TEMPLATE_NAME_FROM_ADMIN_PANEL>', 
+        'to' => '<SUBSCRIBER_IDENTIFIER_FROM_ADMIN_PANEL>', 
+        'payload' => ['customVariables' => 'World']
+    ],
+    [
+        'name' => '<REPLACE_WITH_TEMPLATE_NAME_FROM_ADMIN_PANEL>', 
+        'to' => '<SUBSCRIBER_IDENTIFIER_FROM_ADMIN_PANEL>', 
+        'payload' => ['customVariables' => 'Again']
+    ]
 ])->toArray();
 ```
 
@@ -178,12 +192,7 @@ $novu->markSubscriberMessageActionAsSeen($subscriberId, $messageId, $type, []);
 ```php
 
 // Create a Topic
-$topic = [
- 'key' => 'comments',
- 'name' => 'All Comments'
-];
-
-$novu->createTopic($topic);
+$novu->createTopic($topicName);
 
 // Fetch all topics
 $novu->getTopics();
@@ -260,6 +269,36 @@ $novu->updateIntegration($integrationId, [
 
 // Delete integration
 $novu->deleteIntegration($integrationId);
+
+```
+
+## NOTIFICATIONS
+
+```php
+
+// Get all notifications
+$novu->getNotifications()->toArray();
+
+// Get all notifications with query parameters
+$queryParams = [
+    'page' => 3
+];
+$novu->getNotifications($queryParams)->toArray();
+
+// Get one notification 
+$novu->getNotification($notificationId)->toArray();
+
+// Get notification stats
+$novu->getNotificationStats()->toArray();
+
+// Get Notification graph stats
+$novu->getNotificationGraphStats()->toArray();
+
+// Get Notification graph stats with query parameters
+$queryParams = [
+    'days' => 5
+];
+$novu->getNotificationGraphStats($queryParams)->toArray();
 
 ```
 
@@ -418,6 +457,15 @@ $novu->getExecutionDetails([
     'notificationId' => '<insert-notification-id>',
     'subscriberId'   => '<insert-subscriber-id>'
 ])->toArray();
+
+```
+
+## Validate the MX Record setup for Inbound Parse functionality
+
+```php
+
+// Validate MX Record for Inbound Parse
+$novu->validateMXRecordForInboundParse()->toArray();
 
 ```
 
