@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+1.0.5 / 2023-04-06
+===================
+
+* Add support for retrieving a notification, all notifications, notification stats, and notification graph stats.
+* Add support for validating mx record for inbound parse functionality 
+
 1.0.4 / 2023-03-03
 ===================
 
