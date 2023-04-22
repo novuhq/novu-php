@@ -1,4 +1,13 @@
-# PHP NOVU SDK
+<div align="center">
+  <a href="https://novu.co" target="_blank">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/2233092/213641039-220ac15f-f367-4d13-9eaf-56e79433b8c1.png">
+    <img src="https://user-images.githubusercontent.com/2233092/213641043-3bbb3f21-3c53-4e67-afe5-755aeb222159.png" width="280" alt="Logo"/>
+  </picture>
+  </a>
+</div>
+
+# PHP SDK
 
 [<img src="https://super-static-assets.s3.amazonaws.com/1e9f5a51-c4c6-4fca-b6e8-25fa0186f139/images/1b0b8afa-a688-408a-bb0e-d30742073965.svg" align="right" width="250">](https://github.com/novuhq/novu)
 
