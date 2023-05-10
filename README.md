@@ -123,7 +123,7 @@ $response = $novu->broadcastEvent([
 **Cancel** triggered event. Using a previously generated transactionId during the event trigger, this action will cancel any active or pending workflows:
 
 ```php
-$response = $novu->cancelEvent($transactionId)->toArray();
+$response = $novu->cancelEvent($transactionId);
 ```
 
 ## SUBSCRIBERS

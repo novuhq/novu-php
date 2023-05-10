@@ -49,13 +49,12 @@ trait ManagesTriggers
     /**
      * Cancel triggered event
      *
-     * @return \Novu\SDK\Resources\Trigger
+     * @param string $transactionId
+     * @return bool
      */
     public function cancelEvent($transactionId)
     {
-        $response = $this->delete("events/trigger/{$transactionId}")['data'];
-
-        return new Trigger($response, $this);
+        return $this->delete("events/trigger/{$transactionId}")['data'];
     }
 
 }

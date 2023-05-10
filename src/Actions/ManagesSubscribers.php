@@ -115,6 +115,26 @@ trait ManagesSubscribers
     }
 
     /**
+     * Update subscriber online status
+     *
+     * @param  string $subscriberId
+     * @param  bool $isOnlineStatus
+     * @return \Novu\SDK\Resources\Subscriber
+     */
+    public function updateSubscriberOnlineStatus($subscriberId, $isOnlineStatus)
+    {
+        $subscriber = $this->patch("subscribers/{$subscriberId}/online-status", 
+            [
+                'json' => [
+                    'isOnline' => $isOnlineStatus
+                ]
+            ]
+        )['data'];
+
+        return new Subscriber($subscriber, $this);
+    }
+
+    /**
      * Get a notification feed for a particular subscriber [Come back to this for pagination]
      *
      * @param  string  $subscriberId
