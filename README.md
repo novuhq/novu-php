@@ -166,6 +166,7 @@ $response => $novu->updateSubscriberCredentials($subscriberId, [
 
 // Update subscriber online status
 $isOnlineStatus = true; // or false
+
 $response => $novu->updateSubscriberOnlineStatus($subscriberId, $isOnlineStatus)->toArray();
 
 // Get subscriber preferences

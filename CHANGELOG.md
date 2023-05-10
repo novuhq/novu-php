@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+1.0.6 / 2023-05-10
+===================
+
+* Add support for updating a subscriber's online status
+* Fix bug with CancelEvent method.
+
 1.0.5 / 2023-04-06
 ===================
 
