@@ -166,14 +166,14 @@ $subscriber = $novu->updateSubscriber($subscriberId, [
 $novu->deleteSubscriber($subscriberId);
 
 // Update subscriber credentials
-$response => $novu->updateSubscriberCredentials($subscriberId, [
+$response = $novu->updateSubscriberCredentials($subscriberId, [
     'providerId'  => '<insert-providerId>',
     'credentials' => '<insert-credentials>'
 ])->toArray();
 
 // Update subscriber online status
 $isOnlineStatus = true; // or false
-$response => $novu->updateSubscriberOnlineStatus($subscriberId, $isOnlineStatus)->toArray();
+$response = $novu->updateSubscriberOnlineStatus($subscriberId, $isOnlineStatus)->toArray();
 
 // Get subscriber preferences
 $preferences = $novu->getSubscriberPreferences($subscriberId)->toArray();
