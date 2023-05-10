@@ -21,6 +21,19 @@ trait ManagesTriggers
     }
 
     /**
+     * Bulk Trigger event
+     *
+     * @param array $data
+     * @return \Novu\SDK\Resources\Trigger
+     */
+    public function bulkTriggerEvent(array $data)
+    {
+        $response = $this->post("events/trigger/bulk", ['events' => $data])['data'];
+
+        return new Trigger($response, $this);
+    }
+
+    /**
      * Broadcast event to all
      *
      * @param array $data
@@ -36,13 +49,12 @@ trait ManagesTriggers
     /**
      * Cancel triggered event
      *
-     * @return \Novu\SDK\Resources\Trigger
+     * @param string $transactionId
+     * @return bool
      */
     public function cancelEvent($transactionId)
     {
-        $response = $this->delete("events/trigger/{$transactionId}")['data'];
-
-        return new Trigger($response, $this);
+        return $this->delete("events/trigger/{$transactionId}")['data'];
     }
 
 }

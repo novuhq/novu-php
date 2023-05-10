@@ -9,6 +9,8 @@
 
 # PHP SDK
 
+[<img src="https://super-static-assets.s3.amazonaws.com/1e9f5a51-c4c6-4fca-b6e8-25fa0186f139/images/1b0b8afa-a688-408a-bb0e-d30742073965.svg" align="right" width="250">](https://github.com/novuhq/novu)
+
 [![Latest Stable Version](https://poser.pugx.org/unicodeveloper/novu/v/stable.svg)](https://packagist.org/packages/unicodeveloper/novu)
 [![License](https://poser.pugx.org/unicodeveloper/novu/license.svg)](LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/unicodeveloper/novu.svg)](https://packagist.org/packages/unicodeveloper/novu)
@@ -130,7 +132,7 @@ $response = $novu->broadcastEvent([
 **Cancel** triggered event. Using a previously generated transactionId during the event trigger, this action will cancel any active or pending workflows:
 
 ```php
-$response = $novu->cancelEvent($transactionId)->toArray();
+$response = $novu->cancelEvent($transactionId);
 ```
 
 ## SUBSCRIBERS
