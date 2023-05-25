@@ -203,7 +203,10 @@ $novu->markSubscriberMessageActionAsSeen($subscriberId, $messageId, $type, []);
 ```php
 
 // Create a Topic
-$novu->createTopic($topicName);
+$novu->createTopic([
+  'key'  => 'frontend-users',
+  'name' => 'All frontend users'
+]);
 
 // Fetch all topics
 $novu->getTopics();
