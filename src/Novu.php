@@ -3,6 +3,7 @@
 namespace Novu\SDK;
 
 use GuzzleHttp\Client as HttpClient;
+use InvalidArgumentException;
 use Novu\SDK\Exceptions\IsNull;
 use Novu\SDK\Exceptions\IsEmpty;
 
@@ -36,7 +37,7 @@ class Novu
      *
      * @var string
      */
-    protected $baseUri = 'https://api.novu.co/v1/';
+    protected $baseUri;
 
     /**
      * The Guzzle HTTP Client instance.
@@ -55,28 +56,37 @@ class Novu
     /**
      * Create a new Novu instance.
      *
-     * @param  string|null  $apiKey
+     * @param  array|string|null  $apiKey
      * @param  \GuzzleHttp\Client|null  $guzzle
      * @return void
      */
-    public function __construct($apiKey = null, HttpClient $client = null)
+    public function __construct($config = [], HttpClient $client = null)
     {
-        if ( is_null($apiKey)) {
+        // Default values
+        $defaultBaseUri = 'https://api.novu.co/v1/';
+    
+        if (is_string($config)) {
+            $apiKey = $config;
+            $baseUri = $defaultBaseUri;
+        } elseif (is_array($config)) {
+            $apiKey = $config['apiKey'] ?? null;
+            $baseUri = $config['baseUri'] ?? $defaultBaseUri;
+        } else {
+            throw new InvalidArgumentException("Invalid configuration provided.");
+        }
+    
+        if (is_null($apiKey)) {
             throw IsNull::make('API KEY');
         }
-
-        if( empty($apiKey)) {
-            throw isEmpty::make('API KEY');
+    
+        if (empty($apiKey)) {
+            throw IsEmpty::make('API KEY');
         }
-
-        if (! is_null($apiKey)) {
-            $this->setApiKey($apiKey, $client);
-        }
-
-        if (! is_null($client)) {
-            $this->client = $client;
-        }
+    
+        $this->baseUri = $baseUri;
+        $this->setApiKey($apiKey, $client);
     }
+    
 
     /**
      * Set the api key and setup the client request object.
