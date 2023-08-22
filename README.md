@@ -48,17 +48,37 @@ composer require unicodeveloper/novu
 
 ## Usage
 
-First, create an instance of the **Novu SDK** like so:
+To interact with the **Novu SDK**, you can instantiate it with either just an API key or with a configuration array that includes the API key and a custom base URI.
+
+### Using just the API key:
 
 ```php
 use Novu\SDK\Novu;
 
-$novu = new Novu(<INSERT_API_KEY_HERE>);
+$novu = new Novu('YOUR_API_KEY_HERE');
 
 // Sign up on https://web.novu.co and grab your API key from https://web.novu.co/settings
 ```
 
-Now, you can use the `Novu` instance to perform all the actions that Novu's API provides. 
+### Using a configuration array:
+
+If you need to specify a custom base URI (e.g., if you are pointing to a staging environment or a local development setup), you can pass an array with the `apiKey` and `baseUri`:
+
+```php
+use Novu\SDK\Novu;
+
+$config = [
+    'apiKey' => 'YOUR_API_KEY_HERE',
+    'baseUri' => 'https://custom-api-url.com/v1/'
+];
+
+$novu = new Novu($config);
+
+// Get started with self-hosted Novu here https://docs.novu.co/overview/docker-deploy
+```
+
+Once the `Novu` instance is created, you can use it to perform all the actions that Novu's API provides.
+
 
 ## EVENTS
 
