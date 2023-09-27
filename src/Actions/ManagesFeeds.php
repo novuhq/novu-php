@@ -6,36 +6,35 @@ use Novu\SDK\Resources\Feed;
 
 trait ManagesFeeds
 {
-
     /**
-     * Get Feeds
+     * Get Feeds.
      *
      * @return \Novu\SDK\Resources\Feed
      */
     public function getFeeds()
     {
-        $response = $this->get("feeds")['data'];
+        $response = $this->get('feeds')['data'];
 
         return new Feed($response, $this);
     }
 
     /**
-     * Create Feed
+     * Create Feed.
      *
-     * @param array $data
      * @return \Novu\SDK\Resources\Feed
      */
     public function createFeed(array $data)
     {
-        $response = $this->post("feeds", $data)['data'];
+        $response = $this->post('feeds', $data)['data'];
 
         return new Feed($response, $this);
     }
 
     /**
-     * Delete Feed
+     * Delete Feed.
      *
      * @param string $feedId
+     *
      * @return \Novu\SDK\Resources\Feed
      */
     public function deleteFeed($feedId)
@@ -44,5 +43,4 @@ trait ManagesFeeds
 
         return new Feed($response, $this);
     }
-
 }

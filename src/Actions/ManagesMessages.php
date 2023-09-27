@@ -6,23 +6,23 @@ use Novu\SDK\Resources\Message;
 
 trait ManagesMessages
 {
-
     /**
-     * Get Messages [Come back here because of pagination]
+     * Get Messages [Come back here because of pagination].
      *
      * @return \Novu\SDK\Resources\Message
      */
     public function getMessages()
     {
-        $response = $this->get("messages");
+        $response = $this->get('messages');
 
         return new Message($response, $this);
     }
 
     /**
-     * Delete Message
+     * Delete Message.
      *
      * @param string $messageId
+     *
      * @return \Novu\SDK\Resources\Message
      */
     public function deleteMessage($messageId)
@@ -31,5 +31,4 @@ trait ManagesMessages
 
         return new Message($response, $this);
     }
-
 }

@@ -19,14 +19,14 @@ class Subscriber extends Resource
     public $subscriberId;
 
     /**
-     * The first name of the subscriber
+     * The first name of the subscriber.
      *
      * @var string
      */
     public $firstName;
 
     /**
-     * The last name of the subscriber
+     * The last name of the subscriber.
      *
      * @var string
      */
@@ -54,7 +54,7 @@ class Subscriber extends Resource
     public $avatar;
 
     /**
-     * The channels settings for the subscriber
+     * The channels settings for the subscriber.
      *
      * @var array
      */
@@ -102,8 +102,6 @@ class Subscriber extends Resource
 
     /**
      * Return the array form of Subscriber object & strip out all null fields.
-     *
-     * @return array
      */
     public function toArray(): array
     {
@@ -112,7 +110,7 @@ class Subscriber extends Resource
         unset($publicProperties['attributes']);
         unset($publicProperties['novu']);
 
-        return array_filter($publicProperties, function ($value) { 
+        return array_filter($publicProperties, function ($value) {
             return null !== $value;
         });
     }

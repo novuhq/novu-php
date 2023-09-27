@@ -23,14 +23,12 @@ class Resource
     /**
      * Create a new resource instance.
      *
-     * @param  array  $attributes
-     * @param  \Novu\SDK\Novu|null  $novu
      * @return void
      */
     public function __construct(array $attributes, Novu $novu = null)
     {
         $this->attributes = $attributes;
-        $this->novu = $novu;
+        $this->novu       = $novu;
 
         $this->fill();
     }
@@ -52,7 +50,8 @@ class Resource
     /**
      * Convert the key name to camel case.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return string
      */
     protected function camelCase($key)
@@ -71,8 +70,8 @@ class Resource
     /**
      * Transform the collection of tags to a string.
      *
-     * @param  array  $tags
-     * @param  string|null  $separator
+     * @param string|null $separator
+     *
      * @return string
      */
     protected function transformTags(array $tags, $separator = null)
@@ -90,5 +89,4 @@ class Resource
 
         return $publicProperties;
     }
-
 }

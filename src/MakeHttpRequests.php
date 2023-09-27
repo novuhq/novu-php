@@ -15,7 +15,8 @@ trait MakeHttpRequests
     /**
      * Make a GET request to Novu servers and return the response.
      *
-     * @param  string  $uri
+     * @param string $uri
+     *
      * @return mixed
      */
     public function get($uri)
@@ -26,8 +27,8 @@ trait MakeHttpRequests
     /**
      * Make a POST request to Novu servers and return the response.
      *
-     * @param  string  $uri
-     * @param  array  $payload
+     * @param string $uri
+     *
      * @return mixed
      */
     public function post($uri, array $payload = [])
@@ -38,8 +39,8 @@ trait MakeHttpRequests
     /**
      * Make a PUT request to Novu servers and return the response.
      *
-     * @param  string  $uri
-     * @param  array  $payload
+     * @param string $uri
+     *
      * @return mixed
      */
     public function put($uri, array $payload = [])
@@ -50,8 +51,8 @@ trait MakeHttpRequests
     /**
      * Make a PATCH request to Novu servers and return the response.
      *
-     * @param  string  $uri
-     * @param  array  $payload
+     * @param string $uri
+     *
      * @return mixed
      */
     public function patch($uri, array $payload = [])
@@ -62,8 +63,8 @@ trait MakeHttpRequests
     /**
      * Make a DELETE request to Novu servers and return the response.
      *
-     * @param  string  $uri
-     * @param  array  $payload
+     * @param string $uri
+     *
      * @return mixed
      */
     public function delete($uri, array $payload = [])
@@ -74,9 +75,9 @@ trait MakeHttpRequests
     /**
      * Make request to Novu servers and return the response.
      *
-     * @param  string  $verb
-     * @param  string  $uri
-     * @param  array  $payload
+     * @param string $verb
+     * @param string $uri
+     *
      * @return mixed
      */
     protected function request($verb, $uri, array $payload = [])
@@ -103,7 +104,6 @@ trait MakeHttpRequests
     /**
      * Handle the request error.
      *
-     * @param  \Psr\Http\Message\ResponseInterface  $response
      * @return void
      *
      * @throws \Exception
@@ -127,11 +127,7 @@ trait MakeHttpRequests
         }
 
         if ($response->getStatusCode() === 429) {
-            throw new RateLimitExceeded(
-                $response->hasHeader('x-ratelimit-reset')
-                    ? (int) $response->getHeader('x-ratelimit-reset')[0]
-                    : null
-            );
+            throw new RateLimitExceeded($response->hasHeader('x-ratelimit-reset') ? (int) $response->getHeader('x-ratelimit-reset')[0] : null);
         }
 
         throw new Exception((string) $response->getBody());
@@ -140,9 +136,10 @@ trait MakeHttpRequests
     /**
      * Retry the callback or fail after x seconds.
      *
-     * @param  int  $timeout
-     * @param  callable  $callback
-     * @param  int  $sleep
+     * @param int      $timeout
+     * @param callable $callback
+     * @param int      $sleep
+     *
      * @return mixed
      *
      * @throws \Novu\SDK\Exceptions\Timeout
@@ -167,7 +164,7 @@ trait MakeHttpRequests
             $output = [];
         }
 
-        if (! is_array($output)) {
+        if (!is_array($output)) {
             $output = [$output];
         }
 

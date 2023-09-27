@@ -6,45 +6,44 @@ use Novu\SDK\Resources\Integration;
 
 trait ManagesIntegrations
 {
-   
     /**
-     * Get Integrations
+     * Get Integrations.
      *
      * @return \Novu\SDK\Resources\Integration
      */
     public function getIntegrations()
     {
-        $integrations = $this->get("integrations")['data'];
+        $integrations = $this->get('integrations')['data'];
 
         return new Integration($integrations, $this);
     }
 
     /**
-     * Create integration
+     * Create integration.
      *
      * @return \Novu\SDK\Resources\Integration
      */
     public function createIntegration(array $data)
     {
-        $integrations = $this->post("integrations", $data)['data'];
+        $integrations = $this->post('integrations', $data)['data'];
 
         return new Integration($integrations, $this);
     }
 
     /**
-     * Get Active Integrations
+     * Get Active Integrations.
      *
      * @return \Novu\SDK\Resources\Integration
      */
     public function getActiveIntegrations()
     {
-        $integrations = $this->get("integrations/active")['data'];
+        $integrations = $this->get('integrations/active')['data'];
 
         return new Integration($integrations, $this);
     }
 
     /**
-     * Update Integration
+     * Update Integration.
      *
      * @return \Novu\SDK\Resources\Integration
      */
@@ -56,7 +55,7 @@ trait ManagesIntegrations
     }
 
     /**
-     * Delete Integration
+     * Delete Integration.
      *
      * @return \Novu\SDK\Resources\Integration
      */
@@ -68,8 +67,10 @@ trait ManagesIntegrations
     }
 
     /**
-     * Get webhook support status for provider
+     * Get webhook support status for provider.
+     *
      * @param string $providerId
+     *
      * @return \Novu\SDK\Resources\Integration
      */
     public function getWebhookSupportStatusForProvider($providerId)

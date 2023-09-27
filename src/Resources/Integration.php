@@ -5,14 +5,14 @@ namespace Novu\SDK\Resources;
 class Integration extends Resource
 {
     /**
-     * The internal id Novu generated for the integration
+     * The internal id Novu generated for the integration.
      *
      * @var string
      */
     public $id;
 
     /**
-     * The channel for the integration
+     * The channel for the integration.
      *
      * @var string
      */
@@ -68,7 +68,7 @@ class Integration extends Resource
     public $credentials;
 
     /**
-     * The provider Id
+     * The provider Id.
      *
      * @var string
      */
@@ -76,8 +76,6 @@ class Integration extends Resource
 
     /**
      * Return the array form of Activity object.
-     *
-     * @return array
      */
     public function toArray(): array
     {
@@ -86,7 +84,7 @@ class Integration extends Resource
         unset($publicProperties['attributes']);
         unset($publicProperties['novu']);
 
-        return array_filter($publicProperties, function ($value) { 
+        return array_filter($publicProperties, function ($value) {
             return null !== $value;
         });
     }

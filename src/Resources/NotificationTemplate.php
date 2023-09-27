@@ -5,14 +5,14 @@ namespace Novu\SDK\Resources;
 class NotificationTemplate extends Resource
 {
     /**
-     * The internal id Novu generated
+     * The internal id Novu generated.
      *
      * @var string
      */
     public $id;
 
     /**
-     * The name of the template
+     * The name of the template.
      *
      * @var string
      */
@@ -96,42 +96,42 @@ class NotificationTemplate extends Resource
     public $notificationGroup;
 
     /**
-     * The parent Id
+     * The parent Id.
      *
      * @var string
      */
     public $parentId;
 
     /**
-     * The notification group Id
+     * The notification group Id.
      *
      * @var string
      */
     public $notificationGroupId;
 
     /**
-     * The organization id
+     * The organization id.
      *
      * @var string
      */
     public $organizationId;
 
     /**
-     * The creator Id
+     * The creator Id.
      *
      * @var string
      */
     public $creatorId;
 
     /**
-     * The environment Id
+     * The environment Id.
      *
      * @var string
      */
     public $environmentId;
 
     /**
-     * The triggers
+     * The triggers.
      *
      * @var array
      */
@@ -139,8 +139,6 @@ class NotificationTemplate extends Resource
 
     /**
      * Return the array form of NotificationTemplate object.
-     *
-     * @return array
      */
     public function toArray(): array
     {
@@ -149,7 +147,7 @@ class NotificationTemplate extends Resource
         unset($publicProperties['attributes']);
         unset($publicProperties['novu']);
 
-        return array_filter($publicProperties, function ($value) { 
+        return array_filter($publicProperties, function ($value) {
             return null !== $value;
         });
     }
