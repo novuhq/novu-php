@@ -21,12 +21,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
+          extensions: curl
           coverage: none
-
+      - name: Install Dependencies
+        run: composer update
       - name: Execute tests
         run: composer test:unit
