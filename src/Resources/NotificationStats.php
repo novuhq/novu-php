@@ -5,37 +5,35 @@ namespace Novu\SDK\Resources;
 class NotificationStats extends Resource
 {
     /**
-     * The weekly sent count
+     * The weekly sent count.
      *
-     * @var integer
+     * @var int
      */
     public $weeklySent;
 
     /**
-     * The monthly sent count
+     * The monthly sent count.
      *
-     * @var integer
+     * @var int
      */
     public $monthlySent;
 
     /**
-     * The yearly sent count
+     * The yearly sent count.
      *
-     * @var integer
+     * @var int
      */
     public $yearlySent;
 
     /**
      * Return the array form of Notification Stats object.
-     *
-     * @return array
      */
     public function toArray(): array
     {
         return [
-            'weeklySent' => $this->weeklySent,
+            'weeklySent'  => $this->weeklySent,
             'monthlySent' => $this->monthlySent,
-            'yearlySent' => $this->yearlySent,
+            'yearlySent'  => $this->yearlySent,
         ];
     }
 }

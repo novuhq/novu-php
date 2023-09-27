@@ -5,38 +5,35 @@ namespace Novu\SDK\Resources;
 class NotificationGraphStats extends Resource
 {
     /**
-     * The internal id Novu generated
+     * The internal id Novu generated.
      *
      * @var string
      */
     public $id;
 
     /**
-     * The count
+     * The count.
      *
-     * @var integer
+     * @var int
      */
     public $count;
 
     /**
-     * The templates
+     * The templates.
      *
      * @var array
      */
     public $templates;
 
     /**
-     * The channels
+     * The channels.
      *
      * @var array
      */
     public $channels;
 
-
     /**
-     * Return the array form of Notification Graph Stats
-     *
-     * @return array
+     * Return the array form of Notification Graph Stats.
      */
     public function toArray(): array
     {
@@ -45,7 +42,7 @@ class NotificationGraphStats extends Resource
         unset($publicProperties['attributes']);
         unset($publicProperties['novu']);
 
-        return array_filter($publicProperties, function ($value) { 
+        return array_filter($publicProperties, function ($value) {
             return null !== $value;
         });
     }

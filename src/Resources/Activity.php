@@ -12,7 +12,7 @@ class Activity extends Resource
     public $id;
 
     /**
-     * The number of stats
+     * The number of stats.
      *
      * @var int
      */
@@ -20,8 +20,6 @@ class Activity extends Resource
 
     /**
      * Return the array form of Activity object.
-     *
-     * @return array
      */
     public function toArray(): array
     {
@@ -30,7 +28,7 @@ class Activity extends Resource
         unset($publicProperties['attributes']);
         unset($publicProperties['novu']);
 
-        return array_filter($publicProperties, function ($value) { 
+        return array_filter($publicProperties, function ($value) {
             return null !== $value;
         });
     }

@@ -9,32 +9,32 @@ trait ManagesTopics
     /**
      * Create a new topic.
      *
-     * @param  array $data
      * @return \Novu\SDK\Resources\Topic
      */
     public function createTopic(array $data)
     {
-        $topic = $this->post("topics", $data)['data'];
+        $topic = $this->post('topics', $data)['data'];
 
         return new Topic($topic, $this);
     }
 
     /**
-     * Fetch one topic
+     * Fetch one topic.
      *
-     * @param  string $topicId
+     * @param string $topicId
+     *
      * @return \Novu\SDK\Resources\Topic
      */
     public function getTopics()
     {
-        return $this->get("topics")['data'];
+        return $this->get('topics')['data'];
     }
 
     /**
-     * Add Subscribers to Topic
+     * Add Subscribers to Topic.
      *
-     * @param  string $topicKey
-     * @param  array  $data
+     * @param string $topicKey
+     *
      * @return void
      */
     public function addSubscribersToTopic($topicKey, array $data)
@@ -43,10 +43,10 @@ trait ManagesTopics
     }
 
     /**
-     * Remove Subscribers from this Topic
+     * Remove Subscribers from this Topic.
      *
-     * @param  string $topicKey
-     * @param  array  $data
+     * @param string $topicKey
+     *
      * @return void
      */
     public function removeSubscribersFromTopic($topicKey, array $data)
@@ -55,9 +55,10 @@ trait ManagesTopics
     }
 
     /**
-     * Get Topic
+     * Get Topic.
      *
-     * @param  string $topicKey
+     * @param string $topicKey
+     *
      * @return \Novu\SDK\Resources\Topic
      */
     public function topic($topicKey)
@@ -68,10 +69,11 @@ trait ManagesTopics
     }
 
     /**
-     * Rename Topic
+     * Rename Topic.
      *
-     * @param  string $topicKey
-     * @param  string $topicName 
+     * @param string $topicKey
+     * @param string $topicName
+     *
      * @return array
      */
     public function renameTopic($topicKey, $topicName)

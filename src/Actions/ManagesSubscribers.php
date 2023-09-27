@@ -9,22 +9,22 @@ trait ManagesSubscribers
     /**
      * Create a new subscriber.
      *
-     * @param  array $data
-     * @param  bool  $wait
+     * @param bool $wait
+     *
      * @return \Novu\SDK\Resources\Subscriber
      */
     public function createSubscriber(array $data, $wait = true)
     {
-        $subscriber = $this->post("subscribers", $data)['data'];
+        $subscriber = $this->post('subscribers', $data)['data'];
 
         return new Subscriber($subscriber, $this);
     }
 
     /**
-     * Update a given subscriber
+     * Update a given subscriber.
      *
-     * @param  string $subscriberId
-     * @param  array  $data
+     * @param string $subscriberId
+     *
      * @return \Novu\SDK\Resources\Subscriber
      */
     public function updateSubscriber($subscriberId, array $data)
@@ -37,7 +37,8 @@ trait ManagesSubscribers
     /**
      * Delete the given subscriber.
      *
-     * @param  string  $subscriberId
+     * @param string $subscriberId
+     *
      * @return \Novu\SDK\Resources\Subscriber
      */
     public function deleteSubscriber($subscriberId)
@@ -48,10 +49,10 @@ trait ManagesSubscribers
     }
 
     /**
-     * Update a given subscriber credentials [ Come back to this---->]
+     * Update a given subscriber credentials [ Come back to this---->].
      *
-     * @param  string $subscriberId
-     * @param  array  $data
+     * @param string $subscriberId
+     *
      * @return \Novu\SDK\Resources\Subscriber
      */
     public function updateSubscriberCredentials($subscriberId, array $data)
@@ -62,21 +63,22 @@ trait ManagesSubscribers
     }
 
     /**
-     * Fetch list of subscribers [ Come back to this for pagination---->]
+     * Fetch list of subscribers [ Come back to this for pagination---->].
      *
      * @return \Novu\SDK\Resources\Subscriber
      */
     public function getSubscriberList()
     {
-        $subscribers = $this->get("subscribers");
+        $subscribers = $this->get('subscribers');
 
         return new Subscriber($subscribers, $this);
     }
 
     /**
-     * Fetch one subscriber
+     * Fetch one subscriber.
      *
-     * @param  string $subscriberId
+     * @param string $subscriberId
+     *
      * @return \Novu\SDK\Resources\Subscriber
      */
     public function getSubscriber($subscriberId)
@@ -87,9 +89,10 @@ trait ManagesSubscribers
     }
 
     /**
-     * Fetch a subscriber preferences
+     * Fetch a subscriber preferences.
      *
-     * @param  string  $subscriberId
+     * @param string $subscriberId
+     *
      * @return \Novu\SDK\Resources\Subscriber
      */
     public function getSubscriberPreferences($subscriberId)
@@ -100,11 +103,11 @@ trait ManagesSubscribers
     }
 
     /**
-     * Update a given subscriber preferences [ Come back to this---->]
+     * Update a given subscriber preferences [ Come back to this---->].
      *
-     * @param  string $subscriberId
-     * @param  string $templateId
-     * @param  array  $data
+     * @param string $subscriberId
+     * @param string $templateId
+     *
      * @return \Novu\SDK\Resources\Subscriber
      */
     public function updateSubscriberPreference($subscriberId, $templateId, array $data)
@@ -115,19 +118,20 @@ trait ManagesSubscribers
     }
 
     /**
-     * Update subscriber online status
+     * Update subscriber online status.
      *
-     * @param  string $subscriberId
-     * @param  bool $isOnlineStatus
+     * @param string $subscriberId
+     * @param bool   $isOnlineStatus
+     *
      * @return \Novu\SDK\Resources\Subscriber
      */
     public function updateSubscriberOnlineStatus($subscriberId, $isOnlineStatus)
     {
-        $subscriber = $this->patch("subscribers/{$subscriberId}/online-status", 
+        $subscriber = $this->patch("subscribers/{$subscriberId}/online-status",
             [
                 'json' => [
-                    'isOnline' => $isOnlineStatus
-                ]
+                    'isOnline' => $isOnlineStatus,
+                ],
             ]
         )['data'];
 
@@ -135,9 +139,10 @@ trait ManagesSubscribers
     }
 
     /**
-     * Get a notification feed for a particular subscriber [Come back to this for pagination]
+     * Get a notification feed for a particular subscriber [Come back to this for pagination].
      *
-     * @param  string  $subscriberId
+     * @param string $subscriberId
+     *
      * @return \Novu\SDK\Resources\Subscriber
      */
     public function getNotificationFeedForSubscriber($subscriberId)
@@ -148,9 +153,10 @@ trait ManagesSubscribers
     }
 
     /**
-     * Get the unseen notification count for subscribers feed
+     * Get the unseen notification count for subscribers feed.
      *
-     * @param  string  $subscriberId
+     * @param string $subscriberId
+     *
      * @return \Novu\SDK\Resources\Subscriber
      */
     public function getUnseenNotificationCountForSubscriber($subscriberId)
@@ -161,12 +167,12 @@ trait ManagesSubscribers
     }
 
     /**
-     * Mark a subscriber feed message as seen - [Deprecated]
+     * Mark a subscriber feed message as seen - [Deprecated].
      *
-     * @param  string  $subscriberId
-     * @param  string  $messageId
-     * @param  array $data
-     * @param  bool  $wait
+     * @param string $subscriberId
+     * @param string $messageId
+     * @param bool   $wait
+     *
      * @return \Novu\SDK\Resources\Subscriber
      */
     public function markSubscriberFeedMessageAsSeen($subscriberId, $messageId, array $data, $wait = true)
@@ -177,13 +183,13 @@ trait ManagesSubscribers
     }
 
     /**
-     * Mark message action as seen - [Deprecated]
+     * Mark message action as seen - [Deprecated].
      *
-     * @param  string  $subscriberId
-     * @param  string  $messageId
-     * @param  string  $type
-     * @param  array   $data
-     * @param  bool    $wait
+     * @param string $subscriberId
+     * @param string $messageId
+     * @param string $type
+     * @param bool   $wait
+     *
      * @return \Novu\SDK\Resources\Subscriber
      */
     public function markSubscriberMessageActionAsSeen($subscriberId, $messageId, $type, array $data, $wait = true)

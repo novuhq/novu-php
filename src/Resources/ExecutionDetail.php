@@ -4,7 +4,7 @@ namespace Novu\SDK\Resources;
 
 class ExecutionDetail extends Resource
 {
-     /**
+    /**
      * The internal id Novu generated.
      *
      * @var string
@@ -12,91 +12,91 @@ class ExecutionDetail extends Resource
     public $id;
 
     /**
-     * The job Id
+     * The job Id.
      *
      * @var string
      */
     public $jobId;
 
     /**
-     * The organization id
+     * The organization id.
      *
      * @var string
      */
     public $organizationId;
 
     /**
-     * The environment Id
+     * The environment Id.
      *
      * @var string
      */
     public $environmentId;
 
     /**
-     * The notification Id
+     * The notification Id.
      *
      * @var string
      */
     public $notificationId;
 
     /**
-     * The notification template Id
+     * The notification template Id.
      *
      * @var string
      */
     public $notificationTemplateId;
 
     /**
-     * The subscriber Id
+     * The subscriber Id.
      *
      * @var string
      */
     public $subscriberId;
 
     /**
-     * The message Id
+     * The message Id.
      *
      * @var string
      */
     public $messageId;
 
     /**
-     * The provider Id
+     * The provider Id.
      *
      * @var string
      */
     public $providerId;
 
     /**
-     * The transaction Id
+     * The transaction Id.
      *
      * @var string
      */
     public $transactionId;
 
     /**
-     * The channel
+     * The channel.
      *
      * @var string
      */
     public $channel;
 
     /**
-     * The detail
+     * The detail.
      *
      * @var string
      */
     public $detail;
 
     /**
-     * The source
+     * The source.
      *
      * @var string
      */
     public $source;
 
     /**
-     * The status
+     * The status.
      *
      * @var bool
      */
@@ -110,7 +110,7 @@ class ExecutionDetail extends Resource
     public $isTest;
 
     /**
-     * The is retry status
+     * The is retry status.
      *
      * @var bool
      */
@@ -125,8 +125,6 @@ class ExecutionDetail extends Resource
 
     /**
      * Return the array form of ExecutionDetail object.
-     *
-     * @return array
      */
     public function toArray(): array
     {
@@ -135,7 +133,7 @@ class ExecutionDetail extends Resource
         unset($publicProperties['attributes']);
         unset($publicProperties['novu']);
 
-        return array_filter($publicProperties, function ($value) { 
+        return array_filter($publicProperties, function ($value) {
             return null !== $value;
         });
     }

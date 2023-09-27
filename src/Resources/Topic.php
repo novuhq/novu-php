@@ -12,44 +12,43 @@ class Topic extends Resource
     public $id;
 
     /**
-     * The environment id
+     * The environment id.
      *
      * @var string
      */
     public $environmentId;
 
     /**
-     * The organization id
+     * The organization id.
      *
      * @var string
      */
     public $organizationId;
 
     /**
-     * The topic key
+     * The topic key.
      *
      * @var string
      */
     public $key;
 
     /**
-     * The topic name
+     * The topic name.
      *
      * @var string
      */
     public $name;
 
     /**
-     * The subscribers attached to this topic
+     * The subscribers attached to this topic.
      *
      * @var array
      */
     public $subscribers;
 
     /**
-     * Add Subscribers to this topic
+     * Add Subscribers to this topic.
      *
-     * @param  array  $data
      * @return array
      */
     public function addSubscribers(array $data)
@@ -58,9 +57,8 @@ class Topic extends Resource
     }
 
     /**
-     * Remove Subscribers from this topic
+     * Remove Subscribers from this topic.
      *
-     * @param  array  $data
      * @return string
      */
     public function removeSubscribers(array $data)
@@ -69,9 +67,10 @@ class Topic extends Resource
     }
 
     /**
-     * Rename topic
+     * Rename topic.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return array
      */
     public function rename($topicName)
@@ -79,11 +78,8 @@ class Topic extends Resource
         return $this->novu->renameTopic($this->key, $topicName);
     }
 
-
     /**
      * Return the array form of Topic object.
-     *
-     * @return array
      */
     public function toArray(): array
     {
@@ -92,7 +88,7 @@ class Topic extends Resource
         unset($publicProperties['attributes']);
         unset($publicProperties['novu']);
 
-        return array_filter($publicProperties, function ($value) { 
+        return array_filter($publicProperties, function ($value) {
             return null !== $value;
         });
     }

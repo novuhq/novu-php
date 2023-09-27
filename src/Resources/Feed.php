@@ -12,28 +12,28 @@ class Feed extends Resource
     public $id;
 
     /**
-     * The name of the environment
+     * The name of the environment.
      *
      * @var string
      */
     public $name;
 
     /**
-     * The organization id
+     * The organization id.
      *
      * @var string
      */
     public $organizationId;
 
     /**
-     * The identifier
+     * The identifier.
      *
      * @var string
      */
     public $identifier;
 
     /**
-     * The environment Id
+     * The environment Id.
      *
      * @var object
      */
@@ -41,8 +41,6 @@ class Feed extends Resource
 
     /**
      * Return the array form of Feed object.
-     *
-     * @return array
      */
     public function toArray(): array
     {
@@ -51,7 +49,7 @@ class Feed extends Resource
         unset($publicProperties['attributes']);
         unset($publicProperties['novu']);
 
-        return array_filter($publicProperties, function ($value) { 
+        return array_filter($publicProperties, function ($value) {
             return null !== $value;
         });
     }

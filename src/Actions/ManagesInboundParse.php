@@ -6,15 +6,14 @@ use Novu\SDK\Resources\InboundParse;
 
 trait ManagesInboundParse
 {
-   
     /**
-     * Validate the MX Record setup for Inbound Parse functionality
+     * Validate the MX Record setup for Inbound Parse functionality.
      *
      * @return \Novu\SDK\Resources\InboundParse
      */
     public function validateMXRecordForInboundParse()
     {
-        $record = $this->get("inbound-parse/mx/status")['data'];
+        $record = $this->get('inbound-parse/mx/status')['data'];
 
         return new InboundParse($record, $this);
     }

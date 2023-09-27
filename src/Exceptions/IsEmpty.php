@@ -6,10 +6,9 @@ use Exception;
 
 final class IsEmpty extends Exception
 {
-    /** 
-     * Create a new Exception instance
-     * 
-     * @param string $value
+    /**
+     * Create a new Exception instance.
+     *
      * @return \Novu\SDK\Exceptions\IsEmpty
      */
     public static function make(string $value)

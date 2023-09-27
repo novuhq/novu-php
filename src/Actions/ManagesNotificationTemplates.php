@@ -6,35 +6,35 @@ use Novu\SDK\Resources\NotificationTemplate;
 
 trait ManagesNotificationTemplates
 {
-   
     /**
-     * Get Notification Templates
+     * Get Notification Templates.
      *
      * @return \Novu\SDK\Resources\NotificationTemplate
      */
     public function getNotificationTemplates()
     {
-        $response = $this->get("notification-templates")['data'];
+        $response = $this->get('notification-templates')['data'];
 
         return new NotificationTemplate($response, $this);
     }
 
     /**
-     * Create notification template
+     * Create notification template.
      *
      * @return \Novu\SDK\Resources\NotificationTemplate
      */
     public function createNotificationTemplate(array $data)
     {
-        $response = $this->post("notification-templates", $data)['data'];
+        $response = $this->post('notification-templates', $data)['data'];
 
         return new NotificationTemplate($response, $this);
     }
 
     /**
-     * Get One Notification Template
+     * Get One Notification Template.
      *
      * @param string $templateId
+     *
      * @return \Novu\SDK\Resources\NotificationTemplate
      */
     public function getANotificationTemplate($templateId)
@@ -45,10 +45,10 @@ trait ManagesNotificationTemplates
     }
 
     /**
-     * Update Notification Template
+     * Update Notification Template.
      *
      * @param string $templateId
-     * @param array  $data
+     *
      * @return \Novu\SDK\Resources\NotificationTemplate
      */
     public function updateNotificationTemplateStatus($templateId, array $data)
@@ -59,7 +59,7 @@ trait ManagesNotificationTemplates
     }
 
     /**
-     * Delete Notification Template
+     * Delete Notification Template.
      *
      * @return \Novu\SDK\Resources\NotificationTemplate
      */
@@ -69,5 +69,4 @@ trait ManagesNotificationTemplates
 
         return new NotificationTemplate($response, $this);
     }
-
 }

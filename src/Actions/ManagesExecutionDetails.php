@@ -6,19 +6,18 @@ use Novu\SDK\Resources\ExecutionDetail;
 
 trait ManagesExecutionDetails
 {
-
     /**
-     * Get Execution Details
-     * 
+     * Get Execution Details.
+     *
      * @param $queryParams array
+     *
      * @return \Novu\SDK\Resources\ExecutionDetail
      */
     public function getExecutionDetails(array $queryParams = [])
     {
-
         $uri = 'execution-details';
 
-        if(! empty($queryParams)) {
+        if (!empty($queryParams)) {
             $uri .= '?' . http_build_query($queryParams);
         }
 
@@ -26,5 +25,4 @@ trait ManagesExecutionDetails
 
         return new ExecutionDetail($response, $this);
     }
-
 }

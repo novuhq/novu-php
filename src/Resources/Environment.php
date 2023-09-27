@@ -11,7 +11,7 @@ class Environment extends Resource
      */
     public $id;
 
-     /**
+    /**
      * The userId.
      *
      * @var string
@@ -19,42 +19,42 @@ class Environment extends Resource
     public $userId;
 
     /**
-     * The name of the environment
+     * The name of the environment.
      *
      * @var string
      */
     public $name;
 
     /**
-     * The organization id
+     * The organization id.
      *
      * @var string
      */
     public $organizationId;
 
     /**
-     * The identifier
+     * The identifier.
      *
      * @var string
      */
     public $identifier;
 
     /**
-     * The api keys of the environment
+     * The api keys of the environment.
      *
      * @var array
      */
     public $apiKeys;
 
     /**
-     * The parent Id
+     * The parent Id.
      *
      * @var string
      */
     public $parentId;
 
     /**
-     * The widget
+     * The widget.
      *
      * @var object
      */
@@ -62,8 +62,6 @@ class Environment extends Resource
 
     /**
      * Return the array form of Environment object.
-     *
-     * @return array
      */
     public function toArray(): array
     {
@@ -72,7 +70,7 @@ class Environment extends Resource
         unset($publicProperties['attributes']);
         unset($publicProperties['novu']);
 
-        return array_filter($publicProperties, function ($value) { 
+        return array_filter($publicProperties, function ($value) {
             return null !== $value;
         });
     }

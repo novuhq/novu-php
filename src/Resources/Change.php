@@ -12,56 +12,56 @@ class Change extends Resource
     public $id;
 
     /**
-     * The creator Id
+     * The creator Id.
      *
      * @var string
      */
     public $creatorId;
 
     /**
-     * The organization id
+     * The organization id.
      *
      * @var string
      */
     public $organizationId;
 
     /**
-     * The environment Id
+     * The environment Id.
      *
      * @var string
      */
     public $environmentId;
 
     /**
-     * The entity Id
+     * The entity Id.
      *
      * @var string
      */
     public $entityId;
 
     /**
-     * The parent Id
+     * The parent Id.
      *
      * @var string
      */
     public $parentId;
 
     /**
-     * The enabled status
+     * The enabled status.
      *
      * @var bool
      */
     public $enabled;
 
     /**
-     * The type
+     * The type.
      *
      * @var string
      */
     public $type;
 
     /**
-     * The change
+     * The change.
      *
      * @var string
      */
@@ -76,8 +76,6 @@ class Change extends Resource
 
     /**
      * Return the array form of Change object.
-     *
-     * @return array
      */
     public function toArray(): array
     {
@@ -86,7 +84,7 @@ class Change extends Resource
         unset($publicProperties['attributes']);
         unset($publicProperties['novu']);
 
-        return array_filter($publicProperties, function ($value) { 
+        return array_filter($publicProperties, function ($value) {
             return null !== $value;
         });
     }
