@@ -21,6 +21,18 @@ trait ManagesSubscribers
     }
 
     /**
+     * Bulk creates subscribers.
+     *
+     * @param array $data
+     *
+     * @return array
+     */
+    public function bulkCreateSubscribers(array $data): array
+    {
+        return $this->post('subscribers/bulk', ['subscribers' => $data])['data'];
+    }
+
+    /**
      * Update a given subscriber
      *
      * @param  string $subscriberId
