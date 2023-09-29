@@ -170,6 +170,24 @@ $subscriber = $novu->createSubscriber([
     'avatar' => '<insert-avatar>', // optional
 ])->toArray();
 
+// Bulk create subscribers
+$response = $novu->bulkCreateSubscribers([
+    [
+        'subscriberId' => 'SUBSCRIBER_IDENTIFIER>',
+        'email' => '<insert-email>', // optional
+        'firstName' => '<insert-firstname>', // optional
+        'lastName' => '<insert-lastname>', // optional
+        'avatar' => '<insert-avatar>', // optional
+    ],
+    [
+        'subscriberId' => 'SUBSCRIBER_IDENTIFIER>',
+        'email' => '<insert-email>', // optional
+        'firstName' => '<insert-firstname>', // optional
+        'lastName' => '<insert-lastname>', // optional
+        'avatar' => '<insert-avatar>', // optional
+    ],
+]);
+
 // Get subscriber
 $subscriber = $novu->getSubscriber($subscriberId)->toArray();
 
