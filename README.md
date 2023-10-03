@@ -43,6 +43,7 @@ composer require unicodeveloper/novu
     * [Feeds](#feeds)
     * [Messages](#messages)
     * [Execution Details](#execution-details)
+    * [Tenants](#tenants)
     * [Validate the MX Record setup for Inbound Parse functionality](#validate-the-mx-record-setup-for-inbound-parse-functionality)
 * [License](#license)
 
@@ -509,6 +510,21 @@ $novu->getExecutionDetails([
     'notificationId' => '<insert-notification-id>',
     'subscriberId'   => '<insert-subscriber-id>'
 ])->toArray();
+
+```
+
+## TENANTS
+
+```php
+
+// Create tenant
+$novu->createTenant([
+    'identifier' => '<identifier>',
+    'name' => '<name>',
+]);
+
+// Get tenants
+$novu->getTenants()->toArray();
 
 ```
 
