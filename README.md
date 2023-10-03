@@ -29,7 +29,7 @@ composer require unicodeveloper/novu
 
 * [Installation](#installation)
 * [Usage](#usage)
-    * [Novu API Reference](https://docs.novu.co/api/overview/)
+    * [Novu API Reference](https://docs.novu.co/api-reference/)
     * [Events](#events)
     * [Subscribers](#subscribers)
     * [Topics](#topics)
