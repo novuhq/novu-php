@@ -24,7 +24,8 @@ class Novu
         Actions\ManagesTenants,
         Actions\ManagesTriggers,
         Actions\ManagesNotificationGroups,
-        Actions\ManagesNotificationTemplates;
+        Actions\ManagesNotificationTemplates,
+        Actions\ManagesBlueprints;
 
     /**
      * The Novu API Key.
@@ -65,7 +66,7 @@ class Novu
     {
         // Default values
         $defaultBaseUri = 'https://api.novu.co/v1/';
-    
+
         if (is_string($config)) {
             $apiKey = $config;
             $baseUri = $defaultBaseUri;
@@ -75,19 +76,19 @@ class Novu
         } else {
             throw new InvalidArgumentException("Invalid configuration provided.");
         }
-    
+
         if (is_null($apiKey)) {
             throw IsNull::make('API KEY');
         }
-    
+
         if (empty($apiKey)) {
             throw IsEmpty::make('API KEY');
         }
-    
+
         $this->baseUri = $baseUri;
         $this->setApiKey($apiKey, $client);
     }
-    
+
 
     /**
      * Set the api key and setup the client request object.
@@ -99,7 +100,6 @@ class Novu
     public function setApiKey($apiKey, $client = null)
     {
         $this->apiKey = $apiKey;
-
         $this->client = $client ?: new HttpClient([
             'base_uri' => $this->baseUri,
             'http_errors' => false,
