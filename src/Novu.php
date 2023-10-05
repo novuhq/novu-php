@@ -20,6 +20,7 @@ class Novu
         Actions\ManagesExecutionDetails,
         Actions\ManagesFeeds,
         Actions\ManagesIntegrations,
+        Actions\ManagesLayout,
         Actions\ManagesMessages,
         Actions\ManagesTenants,
         Actions\ManagesTriggers,

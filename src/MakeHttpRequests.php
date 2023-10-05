@@ -16,11 +16,12 @@ trait MakeHttpRequests
      * Make a GET request to Novu servers and return the response.
      *
      * @param  string  $uri
+     * @param  array  $query
      * @return mixed
      */
-    public function get($uri)
+    public function get($uri, array $query = [])
     {
-        return $this->request('GET', $uri);
+        return $this->request('GET', $uri, [], $query);
     }
 
     /**
@@ -79,12 +80,16 @@ trait MakeHttpRequests
      * @param  array  $payload
      * @return mixed
      */
-    protected function request($verb, $uri, array $payload = [])
+    protected function request($verb, $uri, array $payload = [], array $query = [])
     {
         if (isset($payload['json'])) {
             $payload = ['json' => $payload['json']];
         } else {
             $payload = empty($payload) ? [] : ['form_params' => $payload];
+        }
+
+        if (! empty($query)) {
+            $payload = array_merge($payload, ['query' => $query]);
         }
 
         $response = $this->client->request($verb, $uri, $payload);

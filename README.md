@@ -325,6 +325,38 @@ $novu->deleteIntegration($integrationId);
 
 ```
 
+## LAYOUTS
+
+```php
+
+// filter layouts
+$novu->filterLayouts(['pageSize' => 1])->toArray();
+
+// Create layout
+$novu->createLayout([
+    'name' => '<insert->name->of->layout>',
+    'identifier' => '<insert->identifier>',
+    'content' => '<insert->html->content>',
+])->toArray();
+
+// Get a layout
+$novu->getLayout('<insert->layout->id')->toArray();
+
+// Get webhook support status for provider
+$novu->setLayoutAsDefault('<insert->layout->id');
+
+// Update integration
+$novu->Layout('<insert->layout->id', [
+    'name' => '<insert->name->of->layout>',
+    'identifier' => '<insert->identifier>',
+    'content' => '<insert->html->content>',
+])->toArray();
+
+// Delete layout
+$novu->deleteLayout('<insert->layout->id');
+
+```
+
 ## NOTIFICATIONS
 
 ```php
