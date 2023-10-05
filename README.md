@@ -342,11 +342,11 @@ $novu->createLayout([
 // Get a layout
 $novu->getLayout('<insert->layout->id')->toArray();
 
-// Get webhook support status for provider
+// Set Layout as default
 $novu->setLayoutAsDefault('<insert->layout->id');
 
-// Update integration
-$novu->Layout('<insert->layout->id', [
+// Update layout
+$novu->updateLayout('<insert->layout->id', [
     'name' => '<insert->name->of->layout>',
     'identifier' => '<insert->identifier>',
     'content' => '<insert->html->content>',
