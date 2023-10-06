@@ -61,7 +61,7 @@ trait ManagesLayout
      * Update a layout
      * Update the name, content, description, identifier and variables of a layout. 
      * 
-     * @param array $layoutId
+     * @param string $layoutId
      * @param array $bodyParams
      * @return \Novu\SDK\Resources\Layout
      */
