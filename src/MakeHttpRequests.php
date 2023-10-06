@@ -78,6 +78,7 @@ trait MakeHttpRequests
      * @param  string  $verb
      * @param  string  $uri
      * @param  array  $payload
+     * @param  array  $query
      * @return mixed
      */
     protected function request($verb, $uri, array $payload = [], array $query = [])
