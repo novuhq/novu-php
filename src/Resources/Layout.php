@@ -117,7 +117,7 @@ class Layout extends Resource
     public $variables;
 
     /**
-     * Return the array form of NotificationTemplate object.
+     * Return the array form of Layout object.
      *
      * @return array
      */
