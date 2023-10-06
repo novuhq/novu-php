@@ -526,7 +526,10 @@ $novu->deleteFeed();
 ```php
 
 // Get messages
-$novu->getMessages();
+$novu->getMessages([
+    'page' => 1,
+    'channel' => ['<insert-channel>'],
+]);
 
 // Delete message
 $novu->deleteMessage();
