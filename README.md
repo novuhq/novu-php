@@ -347,7 +347,7 @@ $novu->setLayoutAsDefault('<insert-layout-id>');
 
 // Update layout
 $novu->updateLayout('<insert-layout-id>', [
-    'name' => '<insert-name>of-layout>',
+    'name' => '<insert-name-of-layout>',
     'identifier' => '<insert-identifier>',
     'content' => '<insert-html-content>',
 ])->toArray();
