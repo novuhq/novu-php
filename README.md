@@ -336,7 +336,7 @@ $novu->filterLayouts(['pageSize' => 1])->toArray();
 $novu->createLayout([
     'name' => '<insert-name-of-layout>',
     'identifier' => '<insert-identifier>',
-    'content' => '<insert>html-content>',
+    'content' => '<insert-html-content>',
 ])->toArray();
 
 // Get a layout
