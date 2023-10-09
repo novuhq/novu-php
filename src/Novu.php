@@ -25,6 +25,7 @@ class Novu
         Actions\ManagesTriggers,
         Actions\ManagesNotificationGroups,
         Actions\ManagesNotificationTemplates,
+        Actions\ManagesWorkflow,
         Actions\ManagesBlueprints;
 
     /**
