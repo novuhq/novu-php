@@ -15,8 +15,7 @@ class NovuTest extends Testcase
 
     protected function setUp(): void
     {
-        //        $this->novu = new Novu([getenv('NOVU_API_KEY')]);
-        $this->novu = new Novu('3d53880f8247032da02c207646d1ee4a');
+                $this->novu = new Novu([getenv('NOVU_API_KEY')]);
     }
 
     public function testCreateWorkflow()
