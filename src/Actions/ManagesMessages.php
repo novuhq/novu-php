@@ -16,7 +16,7 @@ trait ManagesMessages
     public function getMessages(array $queryParams = [])
     {
         $response = $this->get("messages", $queryParams);
-        $response['data'] = array_map(fn($value) => new Message($value, $this), $response['data']);
+        $response['data'] = array_map(function($value){ new Message($value, $this); }, $response['data']);
         return $response;
     }
 

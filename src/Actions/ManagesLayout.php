@@ -15,7 +15,7 @@ trait ManagesLayout
     public function filterLayouts(array $queryParams = [])
     {
         $layouts = $this->get("layouts", $queryParams);
-        $layouts['data'] = array_map(fn($value) => new Layout($value, $this), $layouts['data']);
+        $layouts['data'] = array_map(function($value){ new Layout($value, $this); }, $layouts['data']);
 
         return $layouts;
     }
