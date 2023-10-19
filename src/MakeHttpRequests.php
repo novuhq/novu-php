@@ -4,6 +4,7 @@ namespace Novu\SDK;
 
 use Closure;
 use Exception;
+use GuzzleHttp\Exception\GuzzleException;
 use Novu\SDK\Exceptions\FailedAction;
 use Novu\SDK\Exceptions\NotFound;
 use Novu\SDK\Exceptions\RateLimitExceeded;
@@ -72,16 +73,7 @@ trait MakeHttpRequests
         return $this->request('DELETE', $uri, $payload);
     }
 
-    /**
-     * Make request to Novu servers and return the response.
-     *
-     * @param  string  $verb
-     * @param  string  $uri
-     * @param  array  $payload
-     * @param  array  $query
-     * @return mixed
-     */
-    protected function request($verb, $uri, array $payload = [], array $query = [])
+    protected function populateRequestPayload(array $payload = [], array $query = [])
     {
         if (isset($payload['json'])) {
             $payload = ['json' => $payload['json']];
@@ -93,19 +85,91 @@ trait MakeHttpRequests
             $payload = array_merge($payload, ['query' => $query]);
         }
 
+        return $payload;
+    }
+
+    /**
+     * Make request to Novu servers and return the response.
+     *
+     * @param string $method
+     * @param string $uri
+     * @param array $payload
+     * @param array $query
+     * @return mixed
+     * @throws GuzzleException
+     */
+    protected function request($method, $uri, array $payload = [], array $query = [])
+    {
+        $payload = $this->populateRequestPayload($payload, $query);
+
         $shouldRetry = null;
 
-        $response = $this->client->request($verb, $uri, $payload);
+        return $this->retry($this->retryConfig->retryMax ?? 1, function ($attempt) use ($method, $uri, $payload, &$shouldRetry) {
+            $response = $this->buildClient()->request($method, $uri, $payload);
 
-        $statusCode = $response->getStatusCode();
+            $statusCode = $response->getStatusCode();
 
-        if ($statusCode < 200 || $statusCode > 299) {
-            return $this->handleRequestError($response);
+            if ($statusCode < 200 || $statusCode > 299) {
+                return $this->handleRequestError($response);
+            }
+
+            $responseBody = (string) $response->getBody();
+
+            return json_decode($responseBody, true) ?: $responseBody;
+        }, $this->determineBackoff(), function ($exception) use (&$shouldRetry) {
+            $result = $shouldRetry ??
+                (is_callable($this->retryConfig->retryCondition)
+                    ? call_user_func($this->retryConfig->retryCondition, $exception)
+                    : $this->getDefaultRetryCondition($exception));
+
+            $shouldRetry = null;
+
+            return $result;
+        });
+    }
+
+    /**
+     * Calculate the time delay for the next request.
+     *
+     * @return \Closure
+     */
+    protected function determineBackoff()
+    {
+        $minDelay = $this->retryConfig->waitMin ?? 1;
+        $maxDelay = $this->retryConfig->waitMax ?? 30;
+        $initialDelay = $this->retryConfig->initialDelay ?? $minDelay;
+
+        return function ($attempt) use ($minDelay, $maxDelay, $initialDelay) {
+            if ($attempt === 1) {
+                return $initialDelay;
+            }
+
+            $delay = $attempt * $minDelay;
+            if ($delay > $maxDelay) {
+                return $maxDelay;
+            }
+
+            return $delay;
+        };
+    }
+
+    /**
+     * Get default retry condition callback
+     *
+     * @param Exception $exception
+     * @return bool
+     */
+    protected function getDefaultRetryCondition($exception)
+    {
+        if ($exception->getCode() >= 500 && $exception->getCode() <= 599) {
+            return true;
         }
 
-        $responseBody = (string) $response->getBody();
+        if (in_array($exception->getCode(), [408, 429, 422])) {
+            return true;
+        }
 
-        return json_decode($responseBody, true) ?: $responseBody;
+        return false;
     }
 
     /**

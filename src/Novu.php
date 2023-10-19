@@ -152,11 +152,11 @@ class Novu
      * Create new Guzzle client.
      *
      * @param  \GuzzleHttp\Client|null $client
-     * @return $this
+     * @return \GuzzleHttp\Client
      */
     protected function createClient($client)
     {
-        $this->client = $client ?: new HttpClient([
+        return $this->client = $client ?: new HttpClient([
             'base_uri' => $this->baseUri,
             'http_errors' => false,
             'cookies' => true,
@@ -167,8 +167,6 @@ class Novu
                 'Content-Type' => 'application/json',
             ],
         ]);
-
-        return $this;
     }
 
     /**
@@ -179,6 +177,16 @@ class Novu
     protected function getReusableClient()
     {
         return $this->client = $this->client ?: $this->createClient(null);
+    }
+
+    /**
+     * Build the Guzzle client.
+     *
+     * @return \GuzzleHttp\Client
+     */
+    public function buildClient()
+    {
+        return $this->client ?? $this->createClient(null);
     }
 
     /**
