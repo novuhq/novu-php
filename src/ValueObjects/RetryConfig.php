@@ -46,7 +46,7 @@ class RetryConfig
         ?int $retryMax,
         ?callable $retryCondition
     ) {
-        $this->initialDelay = $initialDelay ?? $waitMin ?? 1;
+        $this->initialDelay = $initialDelay;
         $this->waitMin = $waitMin;
         $this->waitMax = $waitMax;
         $this->retryMax = $retryMax;

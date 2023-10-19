@@ -109,13 +109,32 @@ trait MakeHttpRequests
 
             $statusCode = $response->getStatusCode();
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                return $this->handleRequestError($response);
+            $isSucessful = $statusCode >= 200 && $statusCode < 300;
+
+            if (! $isSucessful) {
+                $e = $this->handleRequestError($response);
+
+                try {
+                    $shouldRetry = is_callable($this->retryConfig->retryCondition)
+                        ? call_user_func($this->retryConfig->retryCondition, $e)
+                        : $this->getDefaultRetryCondition($e);
+                } catch (Exception $exception) {
+                    $shouldRetry = false;
+
+                    throw $exception;
+                }
+
+                if ((! empty ($retries = $this->retryConfig->retryMax) && $attempt < $retries) && $shouldRetry) {
+                    throw $e;
+                }
+
+                throw $e;
             }
 
             $responseBody = (string) $response->getBody();
 
             return json_decode($responseBody, true) ?: $responseBody;
+
         }, $this->determineBackoff(), function ($exception) use (&$shouldRetry) {
             $result = $shouldRetry ??
                 (is_callable($this->retryConfig->retryCondition)
@@ -176,37 +195,31 @@ trait MakeHttpRequests
      * Handle the request error.
      *
      * @param  \Psr\Http\Message\ResponseInterface  $response
-     * @return void
-     *
-     * @throws \Exception
-     * @throws \Novu\SDK\Exceptions\FailedAction
-     * @throws \Novu\SDK\Exceptions\NotFound
-     * @throws \Novu\SDK\Exceptions\ValidationFailed
-     * @throws \Novu\SDK\Exceptions\RateLimitExceeded
+     * @return mixed
      */
     protected function handleRequestError(ResponseInterface $response)
     {
         if ($response->getStatusCode() == 422) {
-            throw new ValidationFailed(json_decode((string) $response->getBody(), true));
+            return new ValidationFailed(json_decode((string) $response->getBody(), true));
         }
 
         if ($response->getStatusCode() == 404) {
-            throw new NotFound();
+            return new NotFound();
         }
 
         if ($response->getStatusCode() == 400) {
-            throw new FailedAction((string) $response->getBody());
+            return new FailedAction((string) $response->getBody());
         }
 
         if ($response->getStatusCode() === 429) {
-            throw new RateLimitExceeded(
+            return new RateLimitExceeded(
                 $response->hasHeader('x-ratelimit-reset')
                     ? (int) $response->getHeader('x-ratelimit-reset')[0]
                     : null
             );
         }
 
-        throw new Exception((string) $response->getBody());
+        return new Exception((string) $response->getBody());
     }
 
     /**
