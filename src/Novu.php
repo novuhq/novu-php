@@ -10,6 +10,7 @@ use Novu\SDK\Exceptions\IsNull;
 use Novu\SDK\Exceptions\IsEmpty;
 use Novu\SDK\ValueObjects\RetryConfig;
 use Psr\Http\Message\RequestInterface;
+use Ramsey\Uuid\Uuid;
 
 class Novu
 {
@@ -119,9 +120,9 @@ class Novu
     }
 
     /**
-     * Set the api key and setup the client request object.
+     * Set the retry configuration.
      *
-     * @param  string  $apiKey
+     * @param RetryConfig|null $config
      * @return $this
      */
     protected function setRetryConfig($config)
@@ -202,7 +203,7 @@ class Novu
     /**
      * Add the necessary handlers to the given handler stack.
      *
-     * @param  \GuzzleHttp\HandlerStack  $handlerStack
+     * @param  \GuzzleHttp\HandlerStack $handlerStack
      * @return \GuzzleHttp\HandlerStack
      */
     protected function pushHandlers($handlerStack)
@@ -217,7 +218,6 @@ class Novu
     /**
      * Add idempotency request middleware to the client handler stack.
      *
-     * @param  callable $middleware
      * @return void
      */
     protected function withIdempotencyMiddleware()
@@ -228,7 +228,7 @@ class Novu
             }
 
             if (! empty($request->getHeaders()) && in_array($request->getMethod(), ['POST', 'PATCH'])) {
-                return $request->withHeader('Idempotency-Key', 'value');
+                return $request->withHeader('Idempotency-Key', Uuid::uuid4()->toString());
             }
         });
     }

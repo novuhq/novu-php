@@ -96,7 +96,7 @@ trait MakeHttpRequests
      * @param array $payload
      * @param array $query
      * @return mixed
-     * @throws GuzzleException
+     * @throws GuzzleException|Exception
      */
     protected function request($method, $uri, array $payload = [], array $query = [])
     {
