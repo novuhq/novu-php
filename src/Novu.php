@@ -3,9 +3,13 @@
 namespace Novu\SDK;
 
 use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
 use InvalidArgumentException;
 use Novu\SDK\Exceptions\IsNull;
 use Novu\SDK\Exceptions\IsEmpty;
+use Novu\SDK\ValueObjects\RetryConfig;
+use Psr\Http\Message\RequestInterface;
 
 class Novu
 {
@@ -43,6 +47,20 @@ class Novu
     protected $baseUri;
 
     /**
+     * The middleware callable that will handle requests.
+     *
+     * @var array
+     */
+    protected $middleware;
+
+    /**
+     * The Novu Retry Config.
+     *
+     * @var RetryConfig
+     */
+    protected $retryConfig;
+
+    /**
      * The Guzzle HTTP Client instance.
      *
      * @var \GuzzleHttp\Client
@@ -59,11 +77,15 @@ class Novu
     /**
      * Create a new Novu instance.
      *
-     * @param  array|string|null  $apiKey
-     * @param  \GuzzleHttp\Client|null  $guzzle
+     * @param array|string|null $config
+     * @param \GuzzleHttp\Client|null $client
+     * @param RetryConfig|null $retryConfig
      * @return void
+     * @throws IsEmpty
+     * @throws IsNull
+     * @throws InvalidArgumentException
      */
-    public function __construct($config = [], HttpClient $client = null)
+    public function __construct($config = [], HttpClient $client = null, $retryConfig = null)
     {
         // Default values
         $defaultBaseUri = 'https://api.novu.co/v1/';
@@ -86,24 +108,59 @@ class Novu
             throw IsEmpty::make('API KEY');
         }
 
-        $this->baseUri = $baseUri;
-        $this->setApiKey($apiKey, $client);
-    }
+        if (is_array($config) && ! empty($timeout = $config['timeout']) && is_int($timeout)) {
+            $this->setTimeout($timeout);
+        }
 
+        $this->setRetryConfig($config['retryConfig'] ?? $retryConfig);
+
+        $this->baseUri = $baseUri;
+        $this->setApiKey($apiKey)->createClient($client);
+    }
 
     /**
      * Set the api key and setup the client request object.
      *
      * @param  string  $apiKey
-     * @param  \GuzzleHttp\Client|null  $client
      * @return $this
      */
-    public function setApiKey($apiKey, $client = null)
+    protected function setRetryConfig($config)
+    {
+        if ($config instanceof RetryConfig) {
+            $this->retryConfig = $config;
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * Set the api key.
+     *
+     * @param  string  $apiKey
+     * @return $this
+     */
+    public function setApiKey(string $apiKey)
     {
         $this->apiKey = $apiKey;
+
+        return $this;
+    }
+
+
+    /**
+     * Create new Guzzle client.
+     *
+     * @param  \GuzzleHttp\Client|null $client
+     * @return $this
+     */
+    protected function createClient($client)
+    {
         $this->client = $client ?: new HttpClient([
             'base_uri' => $this->baseUri,
             'http_errors' => false,
+            'cookies' => true,
+            'handler' => $this->buildHandlerStack(),
             'headers' => [
                 'Authorization' => 'ApiKey '.$this->apiKey,
                 'Accept' => 'application/json',
@@ -115,12 +172,79 @@ class Novu
     }
 
     /**
-     * Set a new timeout.
+     * Retrieve a reusable Guzzle client.
      *
-     * @param  int  $timeout
+     * @return \GuzzleHttp\Client
+     */
+    protected function getReusableClient()
+    {
+        return $this->client = $this->client ?: $this->createClient(null);
+    }
+
+    /**
+     * Build the Guzzle client handler stack.
+     *
+     * @return \GuzzleHttp\HandlerStack
+     */
+    protected function buildHandlerStack()
+    {
+        return $this->pushHandlers(HandlerStack::create());
+    }
+
+    /**
+     * Add the necessary handlers to the given handler stack.
+     *
+     * @param  \GuzzleHttp\HandlerStack  $handlerStack
+     * @return \GuzzleHttp\HandlerStack
+     */
+    protected function pushHandlers($handlerStack)
+    {
+        foreach ($this->middleware as $middleware) {
+            $handlerStack->push($middleware);
+        }
+
+        return $handlerStack;
+    }
+
+    /**
+     * Add idempotency request middleware to the client handler stack.
+     *
+     * @param  callable $middleware
+     * @return void
+     */
+    protected function withIdempotencyMiddleware()
+    {
+        $this->withRequestMiddleware(function (RequestInterface $request, array $config) {
+            if ($request->hasHeader('Idempotency-Key')) {
+                return;
+            }
+
+            if (! empty($request->getHeaders()) && in_array($request->getMethod(), ['POST', 'PATCH'])) {
+                return $request->withHeader('Idempotency-Key', 'value');
+            }
+        });
+    }
+
+    /**
+     * Add new request middleware the client handler stack.
+     *
+     * @param  callable $middleware
      * @return $this
      */
-    public function setTimeout($timeout)
+    public function withRequestMiddleware(callable $middleware)
+    {
+        array_merge($this->middleware, [Middleware::mapRequest($middleware)]);
+
+        return $this;
+    }
+
+    /**
+     * Set a new timeout.
+     *
+     * @param int $timeout
+     * @return $this
+     */
+    public function setTimeout(int $timeout)
     {
         $this->timeout = $timeout;
 

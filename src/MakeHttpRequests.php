@@ -2,11 +2,11 @@
 
 namespace Novu\SDK;
 
+use Closure;
 use Exception;
 use Novu\SDK\Exceptions\FailedAction;
 use Novu\SDK\Exceptions\NotFound;
 use Novu\SDK\Exceptions\RateLimitExceeded;
-use Novu\SDK\Exceptions\Timeout;
 use Novu\SDK\Exceptions\ValidationFailed;
 use Psr\Http\Message\ResponseInterface;
 
@@ -93,6 +93,8 @@ trait MakeHttpRequests
             $payload = array_merge($payload, ['query' => $query]);
         }
 
+        $shouldRetry = null;
+
         $response = $this->client->request($verb, $uri, $payload);
 
         $statusCode = $response->getStatusCode();
@@ -115,7 +117,7 @@ trait MakeHttpRequests
      * @throws \Exception
      * @throws \Novu\SDK\Exceptions\FailedAction
      * @throws \Novu\SDK\Exceptions\NotFound
-     * @throws \Novu\SDK\Exceptions\Validation
+     * @throws \Novu\SDK\Exceptions\ValidationFailed
      * @throws \Novu\SDK\Exceptions\RateLimitExceeded
      */
     protected function handleRequestError(ResponseInterface $response)
@@ -144,39 +146,58 @@ trait MakeHttpRequests
     }
 
     /**
-     * Retry the callback or fail after x seconds.
+     * Retry an operation a given number of times.
      *
-     * @param  int  $timeout
+     * @param  int|array  $times
      * @param  callable  $callback
-     * @param  int  $sleep
+     * @param  int|\Closure  $sleepMilliseconds
+     * @param  callable|null  $when
      * @return mixed
      *
-     * @throws \Novu\SDK\Exceptions\Timeout
+     * @throws \Exception
      */
-    public function retry($timeout, $callback, $sleep = 5)
+    public function retry($times, callable $callback, $sleepMilliseconds = 0, $when = null)
     {
-        $start = time();
+        $attempts = 0;
 
-        beginning:
+        $backoff = [];
 
-        if ($output = $callback()) {
-            return $output;
+        if (is_array($times)) {
+            $backoff = $times;
+
+            $times = count($times) + 1;
         }
 
-        if (time() - $start < $timeout) {
-            sleep($sleep);
+        beginning:
+        $attempts++;
+        $times--;
+
+        try {
+            return $callback($attempts);
+        } catch (Exception $e) {
+            if ($times < 1 || ($when && ! $when($e))) {
+                throw $e;
+            }
+
+            $sleepMilliseconds = $backoff[$attempts - 1] ?? $sleepMilliseconds;
+
+            if ($sleepMilliseconds) {
+                usleep($this->value($sleepMilliseconds, $attempts, $e) * 1000);
+            }
 
             goto beginning;
         }
+    }
 
-        if ($output === null || $output === false) {
-            $output = [];
-        }
-
-        if (! is_array($output)) {
-            $output = [$output];
-        }
-
-        throw new Timeout($output);
+    /**
+     * Return the default value of the given value.
+     *
+     * @param  mixed  $value
+     * @param  mixed  ...$args
+     * @return mixed
+     */
+    private function value($value, ...$args)
+    {
+        return $value instanceof Closure ? $value(...$args) : $value;
     }
 }
