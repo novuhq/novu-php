@@ -8,15 +8,16 @@ trait ManagesMessages
 {
 
     /**
-     * Get Messages [Come back here because of pagination]
+     * Get Messages
      *
-     * @return \Novu\SDK\Resources\Message
+     * @param array $queryParams
+     * @return mixed
      */
-    public function getMessages()
+    public function getMessages(array $queryParams = [])
     {
-        $response = $this->get("messages");
-
-        return new Message($response, $this);
+        $response = $this->get("messages", $queryParams);
+        $response['data'] = array_map(function($value){ new Message($value, $this); }, $response['data']);
+        return $response;
     }
 
     /**
