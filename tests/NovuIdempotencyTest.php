@@ -65,5 +65,7 @@ test('Novu - Retries and idempotency key', function () {
         'payload' => [],
     ]);
 
+    $this->assertEquals(count($idempotencyKeys), 3);
+
 //    dd($idempotencyKeys);
 });
