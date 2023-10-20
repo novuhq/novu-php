@@ -29,7 +29,6 @@ class RetryConfig
      */
     public $retryCondition;
 
-
     /**
      * Specify the retry configuration params.
      *

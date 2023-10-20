@@ -52,7 +52,7 @@ class Novu
      *
      * @var array
      */
-    protected $middleware;
+    protected $middleware = [];
 
     /**
      * The Novu Retry Config.
@@ -89,14 +89,14 @@ class Novu
     public function __construct($config = [], HttpClient $client = null, $retryConfig = null)
     {
         // Default values
-        $defaultBaseUri = 'https://api.novu.co/v1/';
+        $defaultBaseUrl = 'https://api.novu.co/v1/';
 
         if (is_string($config)) {
             $apiKey = $config;
-            $baseUri = $defaultBaseUri;
+            $baseUri = $defaultBaseUrl;
         } elseif (is_array($config)) {
             $apiKey = $config['apiKey'] ?? null;
-            $baseUri = $config['baseUri'] ?? $defaultBaseUri;
+            $baseUri = $config['baseUri'] ?? $config['baseUrl'] ?? $defaultBaseUrl;
         } else {
             throw new InvalidArgumentException("Invalid configuration provided.");
         }
@@ -109,8 +109,8 @@ class Novu
             throw IsEmpty::make('API KEY');
         }
 
-        if (is_array($config) && ! empty($timeout = $config['timeout']) && is_int($timeout)) {
-            $this->setTimeout($timeout);
+        if (is_array($config) && isset($config['timeout']) && is_int($config['timeout'])) {
+            $this->setTimeout($config['timeout']);
         }
 
         $this->setRetryConfig($config['retryConfig'] ?? $retryConfig);
@@ -125,7 +125,7 @@ class Novu
      * @param RetryConfig|null $config
      * @return $this
      */
-    protected function setRetryConfig($config)
+    public function setRetryConfig($config)
     {
         if ($config instanceof RetryConfig) {
             $this->retryConfig = $config;
@@ -220,16 +220,18 @@ class Novu
      *
      * @return void
      */
-    protected function withIdempotencyMiddleware()
+    public function withIdempotencyMiddleware()
     {
-        $this->withRequestMiddleware(function (RequestInterface $request, array $config) {
+        $this->withRequestMiddleware(function (RequestInterface $request) {
             if ($request->hasHeader('Idempotency-Key')) {
-                return;
+                $request = $request->withAddedHeader('Idempotency-Key', $request->getHeader('Idempotency-Key'));
             }
 
             if (! empty($request->getHeaders()) && in_array($request->getMethod(), ['POST', 'PATCH'])) {
-                return $request->withHeader('Idempotency-Key', Uuid::uuid4()->toString());
+                $request = $request->withAddedHeader('Idempotency-Key', Uuid::uuid4()->toString());
             }
+
+            return $request;
         });
     }
 
