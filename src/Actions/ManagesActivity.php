@@ -6,40 +6,48 @@ use Novu\SDK\Resources\Activity;
 
 trait ManagesActivity
 {
-   
     /**
-     * Get Activity Feed [ Come back to this for pagination and query parameters---->]
+     * Get Activity Feed
      *
-     * @return \Novu\SDK\Resources\Activity
+     * @return Activity[]
      */
-    public function getActivityFeed()
+    public function getActivityFeed(): array
     {
-        $activities = $this->get("activity");
-
-        return new Activity($activities, $this);
+        return $this->getActivity("activity");
     }
 
     /**
      * Get Activity Statistics
      *
-     * @return \Novu\SDK\Resources\Activity
+     * @return Activity[]
      */
-    public function getActivityStatistics()
+    public function getActivityStatistics(): array
     {
-        $activities = $this->get("activity/stats")['data'];
-
-        return new Activity($activities, $this);
+        return $this->getActivity("activity/stats");
     }
 
     /**
-     * Get activity graph statistics
+     * Get Activity Graph Statistics
      *
-     * @return \Novu\SDK\Resources\Activity
+     * @return Activity[]
      */
-    public function getActivityGraphStatistics()
+    public function getActivityGraphStatistics(): array
     {
-        $activities = $this->get("activity/graph/stats")['data'];
+        return $this->getActivity("activity/graph/stats");
+    }
 
-        return new Activity($activities, $this);
+    /**
+     * Common method for fetching activity data
+     *
+     * @param string $endpoint
+     * @return Activity[]
+     */
+    private function getActivity(string $endpoint): array
+    {
+        $activities = $this->get($endpoint)['data'];
+
+        return array_map(function ($activity) {
+            return new Activity($activity, $this);
+        }, $activities);
     }
 }
