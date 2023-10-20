@@ -15,34 +15,34 @@ use Novu\SDK\ValueObjects\RetryConfig;
 use Psr\Http\Message\RequestInterface;
 use Ramsey\Uuid\Uuid;
 
-test('Novu - Retries and idempotency key', function () {
+test('Novu - Retries with the same idempotency key', function () {
     $idempotencyKeys = [];
+    $recordedRequests = [];
+
+    $idempotencyKey = Uuid::uuid4()->toString();
 
     $handlerStack = HandlerStack::create(
         $mock = new MockHandler([
-            function (Request $request) {
-                $this->assertEquals($request->getMethod(), 'POST');
-                $this->assertTrue($request->hasHeader('Idempotency-Key'));
+            function (Request $request) use ($idempotencyKey) {
+                expect($request->getMethod())->toBe('POST');
+                expect($request->hasHeader('Idempotency-Key'))->toBeTruthy();
+                expect($request->getHeader('Idempotency-Key')[0])->toEqual($idempotencyKey);
 
                 return new Response(500, [], json_encode(['message' => 'Server Exception']));
             },
             new Response(500, [], json_encode(['message' => 'Server Exception'])),
-//            new Response(500, [], json_encode(['message' => 'Server Exception'])),
             new Response(201, [], json_encode(['acknowledged' => true, 'transactionId' => '1003'])),
         ])
     );
 
     $handlerStack->push(
-        Middleware::mapRequest(function (RequestInterface $request) use (&$idempotencyKeys) {
-            if ($request->hasHeader('Idempotency-Key')) {
-                $idempotencyKeys[] = $key = $request->getHeader('Idempotency-Key');
-                $request           = $request->withAddedHeader('Idempotency-Key', $key);
+        Middleware::mapRequest(function (RequestInterface $request) use (&$idempotencyKeys, $idempotencyKey, &$recordedRequests) {
+            if (! empty($request->getHeaders()) && in_array($request->getMethod(), ['POST', 'PATCH'])) {
+                $idempotencyKeys[] = $idempotencyKey;
+                $request           = $request->withAddedHeader('Idempotency-Key', $idempotencyKey);
             }
 
-            if (! empty($request->getHeaders()) && in_array($request->getMethod(), ['POST', 'PATCH'])) {
-                $idempotencyKeys[] = $uuid = Uuid::uuid4()->toString();
-                $request           = $request->withAddedHeader('Idempotency-Key', $uuid);
-            }
+            $recordedRequests[] = $request;
 
             return $request;
         })
@@ -65,7 +65,14 @@ test('Novu - Retries and idempotency key', function () {
         'payload' => [],
     ]);
 
-    $this->assertEquals(count($idempotencyKeys), 3);
+    expect(count($idempotencyKeys))->toBe(3);
+    expect(count($recordedRequests))->toBe(3);
 
-//    dd($idempotencyKeys);
+    // Verify that the 'Idempotency-Key' header was set to the expected value in all recorded requests
+    foreach ($recordedRequests as $request) {
+        expect($request->hasHeader('Idempotency-Key'))->toBeTruthy();
+        expect($request->getHeader('Idempotency-Key')[0])->toEqual($idempotencyKey);
+    }
+
+    $mock->reset();
 });
