@@ -1,12 +1,12 @@
 <?php
 
-namespace Novu\SDK\Tests;
+namespace Tests;
 
 use Novu\SDK\Novu;
 use Novu\SDK\Resources\Workflow;
 use PHPUnit\Framework\TestCase;
 
-class NovuTest extends Testcase
+class WorkflowTests extends Testcase
 {
     /**
      * @var \Novu\SDK\Novu
@@ -15,7 +15,7 @@ class NovuTest extends Testcase
 
     protected function setUp(): void
     {
-                $this->novu = new Novu([getenv('NOVU_API_KEY')]);
+        $this->novu = new Novu([getenv('NOVU_API_KEY')]);
     }
 
     public function testCreateWorkflow()

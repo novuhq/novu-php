@@ -62,7 +62,7 @@ trait ManagesWorkflow
      * Delete Workflow.
      *
      * @param string $workflowId
-     * @return \Novu\SDK\Resources\Workflow
+     * @return bool
      */
     public function deleteWorkflow(string $workflowId)
     {
