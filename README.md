@@ -572,6 +572,8 @@ $novu->validateMXRecordForInboundParse()->toArray();
 
 ```
 
+### For more information about these methods and their parameters, see the [API documentation](https://docs.novu.co/api-reference/overview).
+
 ## Contributing
 
 Feature requests, bug reports and pull requests are welcome. Please create an [issue](https://github.com/novuhq/novu-php/issues).
