@@ -572,6 +572,15 @@ $novu->validateMXRecordForInboundParse()->toArray();
 
 ```
 
+## Contributing
+
+Feature requests, bug reports and pull requests are welcome. Please create an [issue](https://github.com/novuhq/novu-php/issues).
+
+## Support and Feedback
+
+Be sure to visit the Novu official [documentation website](https://docs.novu.co/docs) for additional information about our SDK.
+If you need additional assistance, join our Discord server [here](https://discord.novu.co).
+
 ## License
 
 **Novu PHP SDK** was created by **[Prosper Otemuyiwa](https://twitter.com/unicodeveloper)** under the **[MIT license](https://opensource.org/licenses/MIT)**.
