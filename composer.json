@@ -12,7 +12,8 @@
     "require": {
         "php": "^7.2|^8.0",
         "ext-json": "*",
-        "guzzlehttp/guzzle": "^6.5.7|^7.4.4"
+        "guzzlehttp/guzzle": "^6.5.7|^7.4.4",
+        "ramsey/uuid": "3.9.7"
     },
     "require-dev": {
         "pestphp/pest": "^1.20.0",
