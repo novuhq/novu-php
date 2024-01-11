@@ -30,7 +30,7 @@ Full tech stack [here](/techstack.md)
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [novuhq/novu-php](https://github.com/novuhq/novu-php)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|5<br/>Tools used|01/05/24 <br/>Report generated|
+|9<br/>Tools used|01/11/24 <br/>Report generated|
 |------|------|
 </div>
 
@@ -88,6 +88,18 @@ Full tech stack [here](/techstack.md)
 
 </tr>
 </table>
+
+
+## <img src='https://img.stackshare.io/group.svg' /> Open source packages (4)</h2>
+
+## <img width='24' height='24' src='https://img.stackshare.io/package_manager/1778/default_90cb8b66e85ae5b95928b10bb076ab6a27c7e151.png'/> Packagist (4)
+
+|NAME|VERSION|LAST UPDATED|LAST UPDATED BY|LICENSE|VULNERABILITIES|
+|:------|:------|:------|:------|:------|:------|
+|[friendsofphp/php-cs-fixer](https://packagist.org/friendsofphp/php-cs-fixer)|v3.2.1|01/06/23|unicodeveloper |N/A|N/A|
+|[guzzlehttp/guzzle](https://packagist.org/guzzlehttp/guzzle)|v6.5.7|01/06/23|unicodeveloper |N/A|N/A|
+|[phpstan/phpstan](https://packagist.org/phpstan/phpstan)|v1.1.1|01/06/23|unicodeveloper |N/A|N/A|
+|[symfony/var-dumper](https://packagist.org/symfony/var-dumper)|v5.3.10|01/06/23|unicodeveloper |N/A|N/A|
 
 <br/>
 <div align='center'>
