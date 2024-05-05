@@ -6,15 +6,15 @@ use Novu\SDK\Resources\NotificationTemplate;
 
 trait ManagesNotificationTemplates
 {
-   
+
     /**
      * Get Notification Templates
      *
      * @return \Novu\SDK\Resources\NotificationTemplate
      */
-    public function getNotificationTemplates()
+    public function getNotificationTemplates($query = [])
     {
-        $response = $this->get("notification-templates")['data'];
+        $response = $this->get("notification-templates", $query)['data'];
 
         return new NotificationTemplate($response, $this);
     }
