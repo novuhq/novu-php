@@ -27,7 +27,8 @@ class Novu
         Actions\ManagesNotificationGroups,
         Actions\ManagesNotificationTemplates,
         Actions\ManagesWorkflow,
-        Actions\ManagesBlueprints;
+        Actions\ManagesBlueprints,
+        Actions\ManagesOrganizations;
 
     /**
      * The Novu API Key.
