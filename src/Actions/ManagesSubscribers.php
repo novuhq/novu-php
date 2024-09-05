@@ -147,7 +147,7 @@ trait ManagesSubscribers
      * @param  array  $data
      * @return \Novu\SDK\Resources\Subscriber
      */
-    public function updateSubscriberGlobalPreference($subscriberId, $templateId, array $data)
+    public function updateSubscriberGlobalPreference($subscriberId, array $data)
     {
         $subscriber = $this->patch("subscribers/{$subscriberId}/preferences", $data)['data'];
 
