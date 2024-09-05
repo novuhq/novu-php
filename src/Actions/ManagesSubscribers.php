@@ -126,11 +126,12 @@ trait ManagesSubscribers
         return new Subscriber($subscriber, $this);
     }
 
-    /* Fetch a subscriber preferences
-    *
-    * @param  string  $subscriberId
-    * @return \Novu\SDK\Resources\Subscriber
-    */
+    /**
+     * Fetch a subscribers global preferences
+     *
+     * @param  string  $subscriberId
+     * @return \Novu\SDK\Resources\Subscriber
+     */
    public function getSubscriberGlobalPreferences($subscriberId)
    {
        $preferences = $this->get("subscribers/{$subscriberId}/preferences/global")['data'];
@@ -138,7 +139,7 @@ trait ManagesSubscribers
        return new Subscriber($preferences, $this);
    }
 
-       /**
+    /**
      * Update a given subscribers global preferences [ Come back to this---->]
      *
      * @param  string $subscriberId
