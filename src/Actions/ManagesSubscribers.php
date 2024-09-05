@@ -126,6 +126,33 @@ trait ManagesSubscribers
         return new Subscriber($subscriber, $this);
     }
 
+    /* Fetch a subscriber preferences
+    *
+    * @param  string  $subscriberId
+    * @return \Novu\SDK\Resources\Subscriber
+    */
+   public function getSubscriberGlobalPreferences($subscriberId)
+   {
+       $preferences = $this->get("subscribers/{$subscriberId}/preferences/global")['data'];
+
+       return new Subscriber($preferences, $this);
+   }
+
+       /**
+     * Update a given subscribers global preferences [ Come back to this---->]
+     *
+     * @param  string $subscriberId
+     * @param  string $templateId
+     * @param  array  $data
+     * @return \Novu\SDK\Resources\Subscriber
+     */
+    public function updateSubscriberGlobalPreference($subscriberId, $templateId, array $data)
+    {
+        $subscriber = $this->patch("subscribers/{$subscriberId}/preferences", $data)['data'];
+
+        return new Subscriber($subscriber, $this);
+    }
+
     /**
      * Update subscriber online status
      *
